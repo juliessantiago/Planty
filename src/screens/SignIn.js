@@ -6,16 +6,6 @@ import {colors} from '../assets/colors';
 const entrar = () => {
   alert('entrar no sistema');
 };
-const ButtonEntrar = () => {
-  return (
-    <View>
-      <Text style={style.entrar}>Meu botãozinho</Text>
-    </View>
-  );
-};
-
-
-
 const SignIn = ({navigation}) => {
   return (
     <View style={style.container}>
@@ -30,7 +20,14 @@ const SignIn = ({navigation}) => {
         <TextInput style={style.input} />
         <Text style={style.labels}>Esqueceu sua senha?</Text>
 
-        <ButtonEntrar onPress={entrar}/>
+        {/* <ButtonEntrar onPress={entrar}/> */}
+
+        <Button
+          onPress={entrar}
+          title="Learn More"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
       </View>
 
       <View style={style.bottom}>
