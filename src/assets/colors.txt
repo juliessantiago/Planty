@@ -1,0 +1,1 @@
+colorPrimary: #FF1493
