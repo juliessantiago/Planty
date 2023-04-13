@@ -10,7 +10,6 @@ const SignIn = ({navigation}) => {
   return (
     <View style={style.container}>
       <View style={style.top}>
-        <Text>Parte de cima</Text>
         <Image
           style={style.image}
           source={require('.././assets/images/signIn.png')}
@@ -22,18 +21,27 @@ const SignIn = ({navigation}) => {
 
         {/* <ButtonEntrar onPress={entrar}/> */}
 
+      {/* Não consigo fazer funcionar o componente próprio */}
         <Button
           onPress={entrar}
-          title="Learn More"
+          title="Entrar"
           color="#841584"
-          accessibilityLabel="Learn more about this purple button"
+          accessibilityLabel="Entrar no sistema"
         />
       </View>
 
       <View style={style.bottom}>
+        <View style={style.divOu}>
+
+          <View style={style.line} />
+          <Text style={style.textOu}>Ou</Text>
+          <View style={style.line} />
+
+        </View>
+   
         <View>
-          <Text>Não possui uma conta? </Text>
-          <Text>Cadastre-se</Text>
+          <Text style={style.textBotton}>Não possui uma conta? </Text>
+          <Text style={style.textBotton}>Cadastre-se</Text>
         </View>
       </View>
     </View>
@@ -43,21 +51,19 @@ export default SignIn;
 
 const style = StyleSheet.create({
   container: {
-    //backgroundColor: '#FE9A2E',
     flex: 1,
     justifyContent: 'center',
     padding: 20,
   },
   top: {
+    marginTop: 80,
     backgroundColor: '#f1f1f1',
-    flex: 5,
+    flex: 6,
     alignItems: 'center',
   },
   bottom: {
-    backgroundColor: '#F3F781',
-    flex: 1,
+    flex: 3,
     alignItems: 'center',
-    marginTop: 30,
   },
   image: {
     width: 150,
@@ -65,10 +71,10 @@ const style = StyleSheet.create({
     margin: 8,
   },
   input: {
-    width: '90%',
+    width: '60%',
     height: 50,
-    borderBottomColor: colors.inputColor,
-    borderBottomWidth: 2,
+    borderBottomColor: colors.accent,
+    borderBottomWidth: 1,
     fontSize: 18,
     padding: 12,
     paddingBottom: 10,
@@ -76,7 +82,8 @@ const style = StyleSheet.create({
   labels: {
     paddingTop: 20,
     color: colors.primaryDark,
-    fontSize: 18,
+    fontSize: 12,
+    marginBottom: 12,
   },
   entrar: {
     backgroundColor: colors.primary,
@@ -87,4 +94,26 @@ const style = StyleSheet.create({
     margin: 12,
     color: '#f1f1f1',
   },
+  divOu:{
+    display: 'flex', 
+    flexDirection: 'row',
+    justifyContent: 'center', 
+    alignItems: 'center',
+    height: 20,
+    width: '100%',
+  },
+  line:{
+    height: 1, 
+    width: '30%', 
+    backgroundColor: colors.lines,
+  }, 
+  textOu: {
+    color: colors.lines, 
+    marginLeft: 8, 
+    marginRight: 8,
+  }, 
+  textBotton : {
+    marginTop: 10,
+    textAlign: 'center',
+  }
 });
