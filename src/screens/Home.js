@@ -14,8 +14,8 @@ const Home = ({navigation}) => {
         onPress={() => navigation.navigate('SignIn')}
       />
     </View>
-  )
-}
+  );
+};
 export default Home;
 
 const style = StyleSheet.create({

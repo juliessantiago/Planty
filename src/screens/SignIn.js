@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -11,29 +11,32 @@ import {
 } from 'react-native';
 import {colors} from '../assets/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
-// import {ButtonEntrar} from '../components/ButtonEntrar';
+import LittleButton from '../components/LittleButton';
 import app from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
 
-const entrar = () => {
-  alert('entrar no sistema');
-};
 const cadastre = () => {
   alert('cadastre-se');
 };
 
-const LittleButton = () => {
-  return (
-    <View>
-      <TouchableHighlight onPress={entrar} style={style.entrar}>
-        <Text style={{color: 'white', fontSize:20}}>Entrar</Text>
-      </TouchableHighlight>
-    </View>
-  );
-};
+// const LittleButton = () => {
+//   return (
+//     <View>
+//       <TouchableHighlight style={style.entrar}>
+//         <Text style={{color: 'white', fontSize: 20}}>Entrar</Text>
+//       </TouchableHighlight>
+//     </View>
+//   );
+// };
 
 const SignIn = ({navigation}) => {
-  console.log(auth);
+  const [email, setEmail] = useState(' ');
+  const [pass, setPass] = useState(' ');
+
+  const entrar = () => {
+    //alert('testando');
+    console.log(`Email= ${email} Senha=${pass}`);
+  };
   return (
     <SafeAreaView style={style.container}>
       <ScrollView>
@@ -43,19 +46,27 @@ const SignIn = ({navigation}) => {
             source={require('.././assets/images/signIn.png')}
             accessibilityLabel="logo do signIn"
           />
-          <TextInput style={style.input} />
-          <TextInput style={style.input} />
-          <Text style={style.labels}>Esqueceu sua senha?</Text>
+          <TextInput
+            style={style.input}
+            placeholder="email"
+            keyboardType="email-address"
+            returnKeyType="next"
+            onChangeText={text => setEmail(text)}
+            onEndEditing={() => this.passTextInput.focus}
+          />
+          <TextInput
+            ref={ref => (this.passTextInput = ref)}
+            style={style.input}
+            placeholder="senha"
+            keyboardType="default"
+            returnKeyType="go"
+            onChangeText={text => setPass(text)}
+          />
 
-          <LittleButton />
-
-          {/* Não consigo fazer funcionar o componente próprio */}
-          {/* <Button
-            onPress={entrar}
-            title="Entrar"
-            color="#841584"
-            accessibilityLabel="Entrar no sistema"
-          /> */}
+          <View style={style.divInput}>
+            <Text style={style.labels}>Esqueceu sua senha?</Text>
+          </View>
+          <LittleButton entrar={entrar} />
         </View>
 
         <View style={style.bottom}>
@@ -87,17 +98,21 @@ const style = StyleSheet.create({
   top: {
     marginTop: 80,
     backgroundColor: '#f1f1f1',
-    flex: 6,
+    flex: 4,
     alignItems: 'center',
   },
   bottom: {
-    flex: 3,
-    alignItems: 'center',
+    flex: 8,
   },
   image: {
     width: 150,
     height: 150,
     margin: 8,
+  },
+  divInput: {
+    marginTop: 20,
+    //div input: botão entrar e opção "esqueceu sua senha"
+    width: '70%',
   },
   input: {
     width: '60%',
@@ -109,21 +124,12 @@ const style = StyleSheet.create({
     paddingBottom: 10,
   },
   labels: {
-    paddingTop: 20,
+    paddingTop: 30,
     color: colors.primaryDark,
     fontSize: 12,
-    marginBottom: 12,
-  },
-  entrar: {
-    backgroundColor: colors.primary,
-    borderRadius: 10,
-    borderColor: colors.primaryDark,
-    textShadowColor: 'black',
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft:90,
-    paddingRight:90,
-    margin: 12,
+    marginBottom: 2,
+    paddingRight: 20,
+    textAlign: 'right',
   },
   divOu: {
     marginTop: 40,
@@ -139,12 +145,13 @@ const style = StyleSheet.create({
     backgroundColor: colors.lines,
   },
   textOu: {
+    padding: 0,
     color: colors.lines,
     marginLeft: 8,
     marginRight: 8,
   },
   textBotton: {
+    padding: 0,
     marginTop: 0,
-    textAlign: 'center',
   },
 });
