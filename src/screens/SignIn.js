@@ -7,10 +7,13 @@ import {
   Image,
   TextInput,
   ScrollView,
+  TouchableHighlight,
 } from 'react-native';
 import {colors} from '../assets/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
 // import {ButtonEntrar} from '../components/ButtonEntrar';
+import app from '@react-native-firebase/app';
+import auth from '@react-native-firebase/auth';
 
 const entrar = () => {
   alert('entrar no sistema');
@@ -18,7 +21,19 @@ const entrar = () => {
 const cadastre = () => {
   alert('cadastre-se');
 };
+
+const LittleButton = () => {
+  return (
+    <View>
+      <TouchableHighlight onPress={entrar} style={style.entrar}>
+        <Text style={{color: 'white', fontSize:20}}>Entrar</Text>
+      </TouchableHighlight>
+    </View>
+  );
+};
+
 const SignIn = ({navigation}) => {
+  console.log(auth);
   return (
     <SafeAreaView style={style.container}>
       <ScrollView>
@@ -32,15 +47,15 @@ const SignIn = ({navigation}) => {
           <TextInput style={style.input} />
           <Text style={style.labels}>Esqueceu sua senha?</Text>
 
-          {/* <ButtonEntrar onPress={entrar}/> */}
+          <LittleButton />
 
           {/* Não consigo fazer funcionar o componente próprio */}
-          <Button
+          {/* <Button
             onPress={entrar}
             title="Entrar"
             color="#841584"
             accessibilityLabel="Entrar no sistema"
-          />
+          /> */}
         </View>
 
         <View style={style.bottom}>
@@ -101,12 +116,14 @@ const style = StyleSheet.create({
   },
   entrar: {
     backgroundColor: colors.primary,
-    borderRadius: 28,
+    borderRadius: 10,
     borderColor: colors.primaryDark,
     textShadowColor: 'black',
-    padding: 20,
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft:90,
+    paddingRight:90,
     margin: 12,
-    color: '#f1f1f1',
   },
   divOu: {
     marginTop: 40,
@@ -127,7 +144,7 @@ const style = StyleSheet.create({
     marginRight: 8,
   },
   textBotton: {
-    marginTop: 10,
+    marginTop: 0,
     textAlign: 'center',
   },
 });
