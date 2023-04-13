@@ -1,20 +1,31 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
+import StatusBar from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './src/screens/Home';
 import SignIn from './src/screens/SignIn';
 import SignUp from './src/screens/SignUp';
+import colors from './src/assets/colors';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
+      {/* <StatusBar
+        animated={true}
+        backgroundColor="#61dafb",
+      /> */}
       <Stack.Navigator initialRouteName="SignIn">
-        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="Entrar" component={SignIn} options={signInStyle} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Nova conta" component={SignUp} />
       </Stack.Navigator>
     </NavigationContainer>
   );
+}
+
+const signInStyle = {
+  headerStyle: {backgroundColor: '#FF1493'},//Não carregou colors ??
+  headerTitleStyle: {color: 'white'},
 }
