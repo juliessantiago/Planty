@@ -18,24 +18,20 @@ import auth from '@react-native-firebase/auth';
 const cadastre = () => {
   alert('cadastre-se');
 };
-
-// const LittleButton = () => {
-//   return (
-//     <View>
-//       <TouchableHighlight style={style.entrar}>
-//         <Text style={{color: 'white', fontSize: 20}}>Entrar</Text>
-//       </TouchableHighlight>
-//     </View>
-//   );
-// };
-
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState(' ');
   const [pass, setPass] = useState(' ');
 
   const entrar = () => {
-    //alert('testando');
-    console.log(`Email= ${email} Senha=${pass}`);
+    console.log(`Email= ${email} Senha=${pass}`); //TODO: cuidado! Retirar depois! 
+    auth()
+      .signInWithEmailAndPassword(email, pass)
+      .then(() =>{
+        alert("logou");
+      })
+      .catch(error => {
+       console.log(error);
+      })
   };
   return (
     <SafeAreaView style={style.container}>
