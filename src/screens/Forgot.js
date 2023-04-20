@@ -41,7 +41,7 @@ const Forgot = ({navigation}) => {
     }
   };
   return (
-    <View style={style.container}>
+    <View style={style.pageForgot}>
       <TextInput
         style={style.input}
         placeholder="email"
@@ -58,9 +58,10 @@ const Forgot = ({navigation}) => {
 export default Forgot;
 
 const style = StyleSheet.create({
-  container: {
+  pageForgot: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   input: {
     width: '60%',

@@ -1,15 +1,57 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, ScrollView, TextInput} from 'react-native';
 import {colors} from '../assets/colors';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import CreateButton from '../components/CreateButton';
 
 // import { Container } from './styles';
-//APLICAR ESTILO! 
+//APLICAR ESTILO!
 const SignUp = ({navigation}) => {
+  const [nome, setNome] = useState(' ');
+  const [email, setEmail] = useState(' ');
+  const [pass, setPass] = useState(' ');
+  const [confirmpass, setConfirmPass] = useState(' ');
+  const criaConta = () => {
+    console.log('CRIAR CONTA');
+  };
   return (
-    <View style={style.pageSignUp}>
-      <Text style={style.text}>Crie sua conta</Text>
-      {/* <Button title="Tela Home" onPress={() => navigation.navigate('Home')} /> */}
-    </View>
+    <SafeAreaView style={style.pageSignUp}>
+      <ScrollView>
+        <View style={style.top}>
+          <TextInput
+            style={style.input}
+            placeholder="Nome Completo"
+            keyboardType="default"
+            returnKeyType="next"
+            onChangeText={text => setNome(text)}
+          />
+          <TextInput
+            style={style.input}
+            placeholder="Email"
+            keyboardType="email-address"
+            returnKeyType="next"
+            onChangeText={text => setEmail(text)}
+          />
+          <TextInput
+            ref={ref => (this.passTextInput = ref)}
+            style={style.input}
+            placeholder="Senha"
+            keyboardType="default"
+            returnKeyType="next"
+            onChangeText={text => setPass(text)}
+          />
+          <TextInput
+            ref={ref => (this.passTextInput = ref)}
+            style={style.input}
+            placeholder="Confirme sua Senha"
+            keyboardType="default"
+            returnKeyType="go"
+            onChangeText={text => setConfirmPass(text)}
+          />
+          <CreateButton entrar={criaConta} />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -17,8 +59,10 @@ export default SignUp;
 
 const style = StyleSheet.create({
   pageSignUp: {
+    paddingTop: 120,
     backgroundColor: 'white',
     height: '100%',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -26,7 +70,13 @@ const style = StyleSheet.create({
     color: colors.primaryDark,
     fontSize: 40,
   },
-  button: {
-    width: '50%',
+  input: {
+   //width: '60%',
+    height: 50,
+    borderBottomColor: colors.accent,
+    borderBottomWidth: 1,
+    fontSize: 18,
+    padding: 12,
+    paddingBottom: 10,
   },
 });

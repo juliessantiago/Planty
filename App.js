@@ -16,15 +16,33 @@ export default function App() {
       <StatusBar animated={true} backgroundColor={colors.primaryDark} />
       <Stack.Navigator initialRouteName="SignIn">
         <Stack.Screen name="Entrar" component={SignIn} options={signInStyle} />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="Forgot" component={Forgot} />
+        <Stack.Screen name="Home" component={Home} options={homeStyle} />
+        <Stack.Screen name="SignUp" component={SignUp} options={signUpStyle}/>
+        <Stack.Screen name="Forgot" component={Forgot} options={forgotStyle} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 const signInStyle = {
-  headerStyle: {backgroundColor: colors.primary}, 
+  title: 'Entrar',
+  headerStyle: {backgroundColor: colors.primary},
   headerTitleStyle: {color: 'white'},
+};
+const homeStyle = {
+  title: 'Bem vindo(a)!',
+  headerStyle: {backgroundColor: colors.primary},
+  headerTitleStyle: {color: 'white'},
+};
+const signUpStyle = {
+  title: 'Criar nova conta',
+  headerStyle: {backgroundColor: colors.primary},
+  headerTitleStyle: {color: 'white'},
+  headerTintColor: 'white',
+};
+const forgotStyle = {
+  title: 'Recuperar senha',
+  headerStyle: {backgroundColor: colors.primary},
+  headerTitleStyle: {color: 'white'},
+  headerTintColor: 'white',
 };
