@@ -2,19 +2,17 @@ import React, {useState} from 'react';
 import {
   View,
   Text,
-  Button,
   StyleSheet,
   Image,
   TextInput,
   ScrollView,
   Alert,
-} from 'react-native'; //core componentes 
+} from 'react-native'; //core componentes
 import {colors} from '../assets/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LittleButton from '../components/LittleButton';
-import app from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
-import { CommonActions } from '@react-navigation/native';
+import {CommonActions} from '@react-navigation/native';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState(' ');
@@ -23,47 +21,49 @@ const SignIn = ({navigation}) => {
   const entrar = () => {
     auth()
       .signInWithEmailAndPassword(email, pass)
-      .then(() =>{
+      .then(() => {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{name: "Home"}],
-          })
-        )
+            routes: [{name: 'Home'}],
+          }),
+        );
       })
       .catch(error => {
-       switch(error.code){
-          case 'auth/user-not-found' : 
-           Alert.alert("Erro: ","E-mail não encontrado");
-          break; 
-          case 'auth/wrong-password': 
-            Alert.alert("Erro","Senha incorreta"); 
-          break; 
-          case 'auth/invalid-email': 
-            Alert.alert("Erro", "Informe um formato de e-mail válido");
-          break;
-          case 'auth/user-disabled': 
-            Alert.alert("Erro", "Usuário inativado");
-          break;
-       }
-      })
+        switch (error.code) {
+          case 'auth/user-not-found':
+            Alert.alert('Opa!', 'Não encontramos seu e-mail');
+            break;
+          case 'auth/wrong-password':
+            Alert.alert('Houston, we have a problem!', 'Senha incorreta');
+            break;
+          case 'auth/invalid-email':
+            Alert.alert(
+              'Oops!',
+              'Insira um formato como "seunome@suaempresa.com',
+            );
+            break;
+          case 'auth/user-disabled':
+            Alert.alert('Pedimos desculpas', 'Seu usuário está inativado');
+            break;
+        }
+      });
   };
 
-  
-  const cadastre = () => { 
+  const cadastre = () => {
     //console.log(navigation)
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{name: "SignUp"}],
-      })
-    )
+        routes: [{name: 'SignUp'}],
+      }),
+    );
   };
 
-  const esqueceu = ()=>{
-    //console.log("esqueceu a senha"); 
-    navigation.navigate('Forgot'); 
-  }
+  const esqueceu = () => {
+    //console.log("esqueceu a senha");
+    navigation.navigate('Forgot');
+  };
   return (
     <SafeAreaView style={style.container}>
       <ScrollView>
@@ -91,9 +91,9 @@ const SignIn = ({navigation}) => {
           />
 
           <View style={style.divInput}>
-            <Text style={style.labels}  onPress={esqueceu}>
-                Esqueceu sua senha?
-              </Text>
+            <Text style={style.labels} onPress={esqueceu}>
+              Esqueceu sua senha?
+            </Text>
           </View>
           <LittleButton entrar={entrar} />
         </View>

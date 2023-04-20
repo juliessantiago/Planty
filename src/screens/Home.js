@@ -6,7 +6,7 @@ import {colors} from '../assets/colors';
 // import { Container } from './styles';
 
 const Home = ({navigation}) => {
-  console.log(navigation.navigate)
+  //console.log(navigation.navigate);
   return (
     <View style={style.pageHome}>
       <Text style={style.text}>Telinha Home</Text>
@@ -19,12 +19,14 @@ const style = StyleSheet.create({
   pageHome: {
     backgroundColor: 'white',
     height: '100%',
+    alignItems: 'center', //alinhamento horizontal
+    justifyContent: 'center', //alinhamento vertical
   },
-  text:{
-    color: colors.primaryDark, 
-    fontSize: 20,
+  text: {
+    color: colors.primaryDark,
+    fontSize: 40,
   },
   button: {
     width: '50%',
-  }
+  },
 });
