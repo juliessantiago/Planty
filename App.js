@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './src/screens/Home';
 import SignIn from './src/screens/SignIn';
 import SignUp from './src/screens/SignUp';
+import Forgot from './src/screens/Forgot';
 import {colors} from './src/assets/colors';
 
 const Stack = createNativeStackNavigator();
@@ -16,7 +17,8 @@ export default function App() {
       <Stack.Navigator initialRouteName="SignIn">
         <Stack.Screen name="Entrar" component={SignIn} options={signInStyle} />
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Nova conta" component={SignUp} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Forgot" component={Forgot} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -7,17 +7,15 @@ import {
   Image,
   TextInput,
   ScrollView,
-  TouchableHighlight,
-} from 'react-native';
+  Alert,
+} from 'react-native'; //core componentes 
 import {colors} from '../assets/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LittleButton from '../components/LittleButton';
 import app from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
+import { CommonActions } from '@react-navigation/native';
 
-const cadastre = () => {
-  alert('cadastre-se');
-};
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState(' ');
   const [pass, setPass] = useState(' ');
@@ -26,23 +24,46 @@ const SignIn = ({navigation}) => {
     auth()
       .signInWithEmailAndPassword(email, pass)
       .then(() =>{
-        alert("logou");
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{name: "Home"}],
+          })
+        )
       })
       .catch(error => {
-       console.log(error);
        switch(error.code){
           case 'auth/user-not-found' : 
-           alert("E-mail não encontrado");
+           Alert.alert("Erro: ","E-mail não encontrado");
           break; 
           case 'auth/wrong-password': 
-            alert("Senha incorreta"); 
+            Alert.alert("Erro","Senha incorreta"); 
           break; 
           case 'auth/invalid-email': 
-            alert("Informe um formato de e-mail válido");
+            Alert.alert("Erro", "Informe um formato de e-mail válido");
+          break;
+          case 'auth/user-disabled': 
+            Alert.alert("Erro", "Usuário inativado");
           break;
        }
       })
   };
+
+  
+  const cadastre = () => { 
+    //console.log(navigation)
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{name: "SignUp"}],
+      })
+    )
+  };
+
+  const esqueceu = ()=>{
+    //console.log("esqueceu a senha"); 
+    navigation.navigate('Forgot'); 
+  }
   return (
     <SafeAreaView style={style.container}>
       <ScrollView>
@@ -70,7 +91,9 @@ const SignIn = ({navigation}) => {
           />
 
           <View style={style.divInput}>
-            <Text style={style.labels}>Esqueceu sua senha?</Text>
+            <Text style={style.labels}  onPress={esqueceu}>
+                Esqueceu sua senha?
+              </Text>
           </View>
           <LittleButton entrar={entrar} />
         </View>
