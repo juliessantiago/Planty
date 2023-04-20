@@ -23,7 +23,6 @@ const SignIn = ({navigation}) => {
   const [pass, setPass] = useState(' ');
 
   const entrar = () => {
-    console.log(`Email= ${email} Senha=${pass}`); //TODO: cuidado! Retirar depois! 
     auth()
       .signInWithEmailAndPassword(email, pass)
       .then(() =>{
@@ -31,6 +30,17 @@ const SignIn = ({navigation}) => {
       })
       .catch(error => {
        console.log(error);
+       switch(error.code){
+          case 'auth/user-not-found' : 
+           alert("E-mail não encontrado");
+          break; 
+          case 'auth/wrong-password': 
+            alert("Senha incorreta"); 
+          break; 
+          case 'auth/invalid-email': 
+            alert("Informe um formato de e-mail válido");
+          break;
+       }
       })
   };
   return (
