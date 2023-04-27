@@ -13,11 +13,14 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import LittleButton from '../components/LittleButton';
 import auth from '@react-native-firebase/auth';
 import {CommonActions} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import firestore from '@react-native-firebase/firestore';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState(' ');
   const [pass, setPass] = useState(' ');
 
+  //console.log(AsyncStorage);
   const entrar = () => {
     auth()
       .signInWithEmailAndPassword(email, pass)
@@ -27,12 +30,8 @@ const SignIn = ({navigation}) => {
           Alert.alert('Desculpe...', 'Você deve verificar seu e-mail primeiro');
           return;
         }
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{name: 'Home'}],
-          }),
-        );
+        getUser();
+      
       })
       .catch(error => {
         switch (error.code) {
@@ -63,6 +62,42 @@ const SignIn = ({navigation}) => {
   const esqueceu = () => {
     //console.log("esqueceu a senha");
     navigation.navigate('Forgot');
+  };
+
+  const storeUserCache = async value => {
+    console.log(value);
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('user', jsonValue);
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: 'Home'}],
+        }),
+      );
+    } catch (error) {
+      console.log('Não salvou usuário em cache' + error);
+    }
+  };
+
+  const getUser = () => {
+    //recuperando dados do usuário logado
+    firestore()
+      .collection('users')
+      .doc(auth().currentUser.uid)
+      .get()
+      .then(doc => {
+        //console.log(doc);
+        if (doc.exists) {
+          //console.log('Dados' + doc.data());
+          storeUserCache(doc.data()); //chamando função para salvar dados do user em cache
+        } else {
+          console.log('Documento não existe no banco de dados');
+        }
+      })
+      .catch(error => {
+        console.log('Erro ao receber dados' + error);
+      });
   };
   return (
     <SafeAreaView style={style.container}>
