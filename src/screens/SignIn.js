@@ -69,6 +69,7 @@ const SignIn = ({navigation}) => {
             accessibilityLabel="logo do signIn"
           />
           <TextInput
+            ref={ref => (this.emailTextInput = ref)}
             style={style.input}
             placeholder="email"
             keyboardType="email-address"
@@ -86,7 +87,7 @@ const SignIn = ({navigation}) => {
           />
 
           <View style={style.divInput}>
-            <Text style={style.labels} onPress={esqueceu}>
+            <Text style={style.links} onPress={esqueceu}>
               Esqueceu sua senha?
             </Text>
           </View>
@@ -102,7 +103,7 @@ const SignIn = ({navigation}) => {
 
           <View style={style.divOu}>
             <Text style={style.textBotton}>Não possui uma conta? </Text>
-            <Text style={style.textBotton} onPress={cadastre}>
+            <Text style={style.links} onPress={cadastre}>
               Cadastre-se
             </Text>
           </View>
@@ -129,8 +130,8 @@ const style = StyleSheet.create({
     flex: 8,
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 120,
+    height: 120,
     margin: 8,
   },
   divInput: {
@@ -147,13 +148,14 @@ const style = StyleSheet.create({
     padding: 12,
     paddingBottom: 10,
   },
-  labels: {
-    paddingTop: 30,
+  links: {
+    //paddingTop: 30,
     color: colors.primaryDark,
     fontSize: 12,
     marginBottom: 2,
     paddingRight: 20,
     textAlign: 'right',
+    fontStyle: 'italic',
   },
   divOu: {
     marginTop: 40,
@@ -177,5 +179,6 @@ const style = StyleSheet.create({
   textBotton: {
     padding: 0,
     marginTop: 0,
+    fontSize: 12,
   },
 });

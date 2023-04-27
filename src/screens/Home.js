@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import {colors} from '../assets/colors';
 
 // import { Container } from './styles';
@@ -9,7 +8,12 @@ const Home = ({navigation}) => {
   //console.log(navigation.navigate);
   return (
     <View style={style.pageHome}>
-      <Text style={style.text}>Telinha Home</Text>
+      <Image
+        style={style.image}
+        source={require('.././assets/images/lotus.png')}
+        accessibilityLabel="logo do signIn"
+      />
+      <Text style={style.nameApp}>Planty</Text>
     </View>
   );
 };
@@ -28,5 +32,14 @@ const style = StyleSheet.create({
   },
   button: {
     width: '50%',
+  },
+  image: {
+    width: 150,
+    height: 150,
+  },
+  nameApp: {
+    color: colors.primaryDark,
+    fontSize: 40,
+    marginTop: 10,
   },
 });
