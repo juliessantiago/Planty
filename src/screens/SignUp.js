@@ -12,6 +12,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import CreateButton from '../components/CreateButton';
 import auth from '@react-native-firebase/auth';
 import {CommonActions} from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
 
 // import { Container } from './styles';
 //APLICAR ESTILO!
@@ -20,6 +21,8 @@ const SignUp = ({navigation}) => {
   const [email, setEmail] = useState(' ');
   const [pass, setPass] = useState(' ');
   const [confirmpass, setConfirmPass] = useState(' ');
+
+  console.log(firestore);
 
   const criaConta = () => {
     if (nome !== '' && email !== '' && pass !== ' ' && confirmpass !== ' ') {
