@@ -22,6 +22,11 @@ const SignIn = ({navigation}) => {
     auth()
       .signInWithEmailAndPassword(email, pass)
       .then(() => {
+        if (!auth().currentUser.emailVerified) {
+          //Se e-mail não foi verificado, não continua o processo
+          Alert.alert('Desculpe...', 'Você deve verificar seu e-mail primeiro');
+          return;
+        }
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
@@ -151,7 +156,7 @@ const style = StyleSheet.create({
   links: {
     //paddingTop: 30,
     color: colors.primaryDark,
-    fontSize: 12,
+    fontSize: 16,
     marginBottom: 2,
     paddingRight: 20,
     textAlign: 'right',
@@ -179,6 +184,6 @@ const style = StyleSheet.create({
   textBotton: {
     padding: 0,
     marginTop: 0,
-    fontSize: 12,
+    fontSize: 16,
   },
 });

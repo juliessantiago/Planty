@@ -23,36 +23,47 @@ const SignUp = ({navigation}) => {
 
   const criaConta = () => {
     if (nome !== '' && email !== '' && pass !== ' ' && confirmpass !== ' ') {
-      auth()
-        .createUserWithEmailAndPassword(email, pass)
-        .then(() => {
-          Alert.alert('Sucesso!', 'Sua conta foi criada.');
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{name: 'Home'}], //após cadastro, envia direto para tela home
-            }),
-          );
-        })
-        .catch(error => {
-          switch (error.code) {
-            case 'auth/email-already-in-use':
-              Alert.alert('Opa!', 'E-mail já está cadastrado');
-              break;
-            case 'auth/invalid-email':
+      if (pass === confirmpass) {
+        auth()
+          .createUserWithEmailAndPassword(email, pass)
+          .then(() => {
+            let user = auth().currentUser;
+            user.sendEmailVerification().then(() => {
               Alert.alert(
-                'Oops!',
-                'Insira um formato como "seunome@suaempresa.com',
+                'Olá!',
+                'Enviamos uma mensagem de verificação para seu e-mail',
               );
-              break;
-            case 'auth/operation-not-allowed':
-              Alert.alert('Desculpe...', 'Não é permitido criar nova conta');
-              break;
-            case 'auth/weak-password':
-              Alert.alert('Cuidado', 'Utilize uma senha forte');
-              break;
-          }
-        });
+              navigation.dispatch(
+                CommonActions.reset({
+                  index: 0,
+                  routes: [{name: 'Entrar'}], //após envio de e-mail de confirmação, redireciona para tela de login
+                }),
+              );
+            }); //then do sendEmail
+            //Alert.alert('Sucesso!', 'Sua conta foi criada.');
+          }) //then
+          .catch(error => {
+            switch (error.code) {
+              case 'auth/email-already-in-use':
+                Alert.alert('Opa!', 'E-mail já está cadastrado');
+                break;
+              case 'auth/invalid-email':
+                Alert.alert(
+                  'Oops!',
+                  'Insira um formato como "seunome@suaempresa.com',
+                );
+                break;
+              case 'auth/operation-not-allowed':
+                Alert.alert('Desculpe...', 'Não é permitido criar nova conta');
+                break;
+              case 'auth/weak-password':
+                Alert.alert('Cuidado', 'Utilize uma senha forte');
+                break;
+            }
+          });
+      } else {
+        Alert.alert('Cuidado!', 'Senhas digitadas devem ser iguais');
+      }
     } else {
       Alert.alert('Ainda não...', 'Você esqueceu de informar seus dados.');
     }
