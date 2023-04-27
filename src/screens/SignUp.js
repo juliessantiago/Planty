@@ -22,7 +22,7 @@ const SignUp = ({navigation}) => {
   const [pass, setPass] = useState(' ');
   const [confirmpass, setConfirmPass] = useState(' ');
 
-  console.log(firestore);
+  //console.log(firestore);
 
   const criaConta = () => {
     if (nome !== '' && email !== '' && pass !== ' ' && confirmpass !== ' ') {
@@ -31,20 +31,30 @@ const SignUp = ({navigation}) => {
           .createUserWithEmailAndPassword(email, pass)
           .then(() => {
             let user = auth().currentUser;
-            user.sendEmailVerification().then(() => {
-              Alert.alert(
-                'Olá!',
-                'Enviamos uma mensagem de verificação para seu e-mail',
-              );
-              navigation.dispatch(
-                CommonActions.reset({
-                  index: 0,
-                  routes: [{name: 'Entrar'}], //após envio de e-mail de confirmação, redireciona para tela de login
-                }),
-              );
-            }); //then do sendEmail
-            //Alert.alert('Sucesso!', 'Sua conta foi criada.');
-          }) //then
+            let userData = {};
+            userData.nome = nome;
+            userData.email = email;
+            //const usersCollection = firestore().collection('Users');
+            firestore()
+              .collection('users')
+              .doc(user.uid) //Chave
+              .set(userData) //Valor
+              .then(() => {
+                console.log('Usuário adicionado');
+                user.sendEmailVerification().then(() => {
+                  Alert.alert(
+                    'Olá!',
+                    'Enviamos uma mensagem de verificação para seu e-mail',
+                  );
+                  navigation.dispatch(
+                    CommonActions.reset({
+                      index: 0,
+                      routes: [{name: 'Entrar'}], //após envio de e-mail de confirmação, redireciona para tela de login
+                    }),
+                  );
+                }); //then do sendEmail
+              });
+          }) //then do cadastro
           .catch(error => {
             switch (error.code) {
               case 'auth/email-already-in-use':
@@ -63,7 +73,7 @@ const SignUp = ({navigation}) => {
                 Alert.alert('Cuidado', 'Utilize uma senha forte');
                 break;
             }
-          });
+          }); //catch do cadastro
       } else {
         Alert.alert('Cuidado!', 'Senhas digitadas devem ser iguais');
       }
