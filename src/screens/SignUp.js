@@ -45,7 +45,7 @@ const SignUp = ({navigation}) => {
                   Alert.alert(
                     'Olá!',
                     'Enviamos uma mensagem de verificação para seu e-mail',
-                  );
+                  ); 
                   navigation.dispatch(
                     CommonActions.reset({
                       index: 0,

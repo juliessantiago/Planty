@@ -31,7 +31,6 @@ const SignIn = ({navigation}) => {
           return;
         }
         getUser();
-      
       })
       .catch(error => {
         switch (error.code) {

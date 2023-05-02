@@ -1,25 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {colors} from '../assets/colors';
-import firestore from '@react-native-firebase/firestore';
-import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 // import { Container } from './styles';
 
 const Home = ({navigation}) => {
   //console.log(navigation.navigate);
-
-  const getUserCache = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem('user'); //precisa ser a mesma chave definida lá no signIn
-      console.log('getUserCache' + jsonValue);
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (error) {
-      console.log('Não foi possível recuperar usuário cacheado' + error);
-    }
-  };
-  getUserCache();
+  //getUserCache();
 
   return (
     <View style={style.pageHome}>
