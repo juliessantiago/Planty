@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
+  TouchableHighlight,
 } from 'react-native'; //core componentes
 import {colors} from '../assets/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -130,7 +131,9 @@ const SignIn = ({navigation}) => {
               Esqueceu sua senha?
             </Text>
           </View>
-          <LittleButton entrar={entrar} />
+          <TouchableHighlight underlayColor={colors.primary}>
+            <LittleButton entrar={entrar} />
+          </TouchableHighlight>
         </View>
 
         <View style={style.bottom}>
@@ -142,9 +145,11 @@ const SignIn = ({navigation}) => {
 
           <View style={style.divOu}>
             <Text style={style.textBotton}>Não possui uma conta? </Text>
-            <Text style={style.links} onPress={cadastre}>
-              Cadastre-se
-            </Text>
+            <TouchableHighlight underlayColor={colors.primaryDark}>
+              <Text style={style.links} onPress={cadastre}>
+                Cadastre-se
+              </Text>
+            </TouchableHighlight>
           </View>
         </View>
       </ScrollView>
