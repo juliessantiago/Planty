@@ -89,7 +89,7 @@ const SignUp = ({navigation}) => {
             <Image
               style={style.image}
               source={require('.././assets/images/nova_conta.png')}
-              accessibilityLabel="logo do signIn"
+              accessibilityLabel="criar conta"
             />
           </View>
           <TextInput
@@ -169,8 +169,8 @@ const style = StyleSheet.create({
     marginBottom: 30,
   },
   image: {
-    width: 120,
-    height: 120,
-    margin: 8,
+    width: 100,
+    height: 100,
+    margin: 20,
   },
 });

@@ -5,7 +5,7 @@ import {colors} from '../assets/colors';
 const RecoveryButton = ({entrar}) => {
   return (
     <View style={style.entrar}>
-      <TouchableHighlight onPress={entrar}>
+      <TouchableHighlight onPress={entrar} underlayColor={'transparent'}>
         <Text style={{color: 'white', fontSize: 20}}>Recuperar</Text>
       </TouchableHighlight>
     </View>
