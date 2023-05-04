@@ -19,7 +19,7 @@ const Preload = ({navigation}) => {
   const loginUser = async () => {
     const user = await getUserCache();
     if (user) {
-      console.log(user.pass);
+      //console.log(user.pass);
       //Usuário está cacheado
       auth()
         .signInWithEmailAndPassword(user.email, user.pass)
@@ -55,7 +55,7 @@ const Preload = ({navigation}) => {
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: 'SignIn'}],
+          routes: [{name: 'Entrar'}],
         }),
       );
     }

@@ -31,6 +31,7 @@ const SignIn = ({navigation}) => {
           Alert.alert('Desculpe...', 'Você deve verificar seu e-mail primeiro');
           return;
         }
+        storeUserCache({email, pass});
         getUser();
       })
       .catch(error => {
@@ -90,7 +91,6 @@ const SignIn = ({navigation}) => {
         //console.log(doc);
         if (doc.exists) {
           //console.log('Dados' + doc.data());
-          storeUserCache(doc.data()); //chamando função para salvar dados do user em cache
         } else {
           console.log('Documento não existe no banco de dados');
         }
