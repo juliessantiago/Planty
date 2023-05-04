@@ -84,7 +84,7 @@ const SignUp = ({navigation}) => {
   return (
     <SafeAreaView style={style.pageSignUp}>
       <ScrollView>
-        <View>
+        <>
           <View style={style.top}>
             <Image
               style={style.image}
@@ -128,7 +128,7 @@ const SignUp = ({navigation}) => {
             onEndEditing={() => criaConta}
           />
           <CreateButton entrar={criaConta} />
-        </View>
+        </>
       </ScrollView>
     </SafeAreaView>
   );
