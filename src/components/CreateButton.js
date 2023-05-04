@@ -16,7 +16,7 @@ export default CreateButton;
 
 const style = StyleSheet.create({
   entrar: {
-    //backgroundColor: colors.primary,
+    backgroundColor: colors.primary,
     borderRadius: 10,
     borderColor: 'green',
     textShadowColor: 'black',
