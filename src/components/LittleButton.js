@@ -5,7 +5,7 @@ import {colors} from '../assets/colors';
 const LittleButton = ({entrar}) => {
   return (
     <View style={style.entrar}>
-      <TouchableHighlight onPress={entrar}>
+      <TouchableHighlight onPress={entrar} underlayColor={'transparent'}>
         <Text style={{color: 'white', fontSize: 20}}>Entrar</Text>
       </TouchableHighlight>
     </View>
@@ -16,7 +16,7 @@ export default LittleButton;
 
 const style = StyleSheet.create({
   entrar: {
-    //backgroundColor: '#FF1493', //Por que não está conseguindo chegar a colors?
+    //backgroundColor: '#FF1493',
     backgroundColor: colors.primary,
     borderRadius: 10,
     borderColor: '#A7095D',

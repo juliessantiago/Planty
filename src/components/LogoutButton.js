@@ -1,16 +1,33 @@
 import React from 'react';
-import {TouchableHighlight, View, StyleSheet, Image, Alert} from 'react-native';
+import {TouchableHighlight, View, StyleSheet, Image} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import auth from '@react-native-firebase/auth';
+import RNRestart from 'react-native-restart';
 import {colors} from '../assets/colors';
 
 // import { Container } from './styles';
 const sair = () => {
-  Alert.alert('saiu');
+  AsyncStorage.removeItem('user')
+    .then(() => {
+      auth()
+        .signOut()
+        .then(() => {
+          console.log('User removido, retornou a login');
+        })
+        .catch(error => {
+          console.log('erro no auth SignOut');
+        });
+      RNRestart.Restart();
+    })
+    .catch(error => {
+      console.log('erro no removeItem do AsyncSorage');
+    });
 };
 const LogoutButton = () => {
   return (
-    <View>
+    <View style={style.container}>
       <TouchableHighlight
-        underlayColor={colors.primaryDark}
+        underlayColor={'transparent'}
         style={style.button}
         onPress={sair}>
         <Image
@@ -26,10 +43,13 @@ const LogoutButton = () => {
 export default LogoutButton;
 const style = StyleSheet.create({
   button: {
-    backgroundColor: colors.primaryDark,
+    marginLeft: '60%',
+    marginTop: '50%',
+  },
+  container: {},
+  image: {
+    //backgroundColor: colors.primaryDark,
     width: 50,
     height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

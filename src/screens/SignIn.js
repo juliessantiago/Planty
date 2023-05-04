@@ -65,7 +65,7 @@ const SignIn = ({navigation}) => {
   };
 
   const storeUserCache = async value => {
-    console.log(value);
+    //console.log(value);
     try {
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem('user', jsonValue);
@@ -145,11 +145,9 @@ const SignIn = ({navigation}) => {
 
           <View style={style.divOu}>
             <Text style={style.textBotton}>Não possui uma conta? </Text>
-            <TouchableHighlight underlayColor={colors.primaryDark}>
-              <Text style={style.links} onPress={cadastre}>
-                Cadastre-se
-              </Text>
-            </TouchableHighlight>
+            <Text style={style.links} onPress={cadastre}>
+              Cadastre-se
+            </Text>
           </View>
         </View>
       </ScrollView>

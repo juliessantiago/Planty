@@ -22,7 +22,7 @@ const Home = ({navigation}) => {
       <Image
         style={style.image}
         source={require('.././assets/images/lotus.png')}
-        accessibilityLabel="logo do signIn"
+        accessibilityLabel="logo do app"
       />
       <LogoutButton />
     </View>
