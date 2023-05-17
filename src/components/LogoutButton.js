@@ -44,7 +44,7 @@ export default LogoutButton;
 const style = StyleSheet.create({
   button: {
     marginLeft: '60%',
-    marginTop: '50%',
+    marginTop: '10%',
   },
   container: {},
   image: {

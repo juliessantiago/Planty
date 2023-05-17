@@ -18,7 +18,7 @@ const style = StyleSheet.create({
   entrar: {
     backgroundColor: colors.primary,
     borderRadius: 10,
-    borderColor: 'green',
+    //borderColor: 'green',
     textShadowColor: 'black',
     paddingTop: 20,
     paddingBottom: 20,

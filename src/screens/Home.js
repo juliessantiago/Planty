@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, FlatList, SafeAreaView} from 'react-native';
 import {colors} from '../assets/colors';
 import LogoutButton from '../components/LogoutButton';
+import Item from '../components/Item';
 // import { Container } from './styles';
 
 const Home = ({navigation}) => {
@@ -16,37 +17,63 @@ const Home = ({navigation}) => {
   //     headerRight: () => <LogoutButton />,
   //   });
   // }, []);
+  const dados = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: '1',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: '2',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: '3',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d73',
+      title: '4',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d74',
+      title: '5',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d75',
+      title: '6',
+    },
+  ];
+
+  const routeUser = item => {
+    console.log(item);
+  };
+  const renderItem = ({item}) => (
+    <Item title={item.title} onPress={() => routeUser(item)} />
+  );
   return (
-    <View style={style.pageHome}>
-      <Text style={style.nameApp}>Seja bem Vindo!</Text>
-      <Image
-        style={style.image}
-        source={require('.././assets/images/lotus.png')}
-        accessibilityLabel="logo do app"
-      />
-      <LogoutButton />
-    </View>
+    <SafeAreaView>
+      <View style={style.pageHome}>
+        <FlatList //cada item dentro da flatlist renderiza o componente que for passado na função render
+          data={dados}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
+      </View>
+      <View>
+        <LogoutButton style={style.button} />
+      </View>
+    </SafeAreaView>
   );
 };
 export default Home;
 
 const style = StyleSheet.create({
   pageHome: {
-    backgroundColor: 'white',
-    height: '100%',
-    alignItems: 'center', //alinhamento horizontal
-    justifyContent: 'center', //alinhamento vertical
-  },
-  text: {
-    color: colors.primaryDark,
-    fontSize: 40,
+    //backgroundColor: 'gray',
+    //height: '100%',
   },
   button: {
     width: '50%',
-  },
-  image: {
-    width: 150,
-    height: 150,
   },
   nameApp: {
     color: colors.primaryDark,
