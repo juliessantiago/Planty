@@ -4,6 +4,8 @@ import {colors} from '../assets/colors';
 import LogoutButton from '../components/LogoutButton';
 import Item from '../components/Item';
 import firestore from '@react-native-firebase/firestore';
+import {CommonActions} from '@react-navigation/native';
+
 const Home = ({navigation}) => {
   const [data, setData] = useState([]);
 
@@ -35,7 +37,13 @@ const Home = ({navigation}) => {
   }, []);
 
   const routeUser = item => {
-    console.log(item);
+    //envia para rota de alteração de dados do usuário
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: 'EditaUser',
+        params: {user: item},
+      }),
+    );
   };
 
   const renderItem = ({item}) => (

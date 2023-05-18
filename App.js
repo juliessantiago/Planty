@@ -8,6 +8,7 @@ import SignUp from './src/screens/SignUp';
 import Forgot from './src/screens/Forgot';
 import {colors} from './src/assets/colors';
 import Preload from './src/screens/Preload';
+import User from './src/screens/User';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function App() {
           options={preloadStyle}
         />
         <Stack.Screen name="Home" component={Home} options={homeStyle} />
+        <Stack.Screen name="EditaUser" component={User} options={userStyle} />
         <Stack.Screen name="SignUp" component={SignUp} options={signUpStyle} />
         <Stack.Screen name="Forgot" component={Forgot} options={forgotStyle} />
       </Stack.Navigator>
@@ -57,4 +59,10 @@ const preloadStyle = {
   // title: 'Recuperar senha',
   // headerStyle: {backgroundColor: colors.primary},
   // headerTitleStyle: {color: 'white'},
+};
+const userStyle = {
+  title: 'Editar usuário',
+  headerStyle: {backgroundColor: colors.primary},
+  headerTitleStyle: {color: 'white'},
+  headerTintColor: 'white',
 };
