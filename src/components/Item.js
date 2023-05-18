@@ -4,7 +4,8 @@ import {colors} from '../assets/colors';
 
 // import { Container } from './styles';
 
-const Item = ({title, onPress}) => {
+const Item = ({item, onPress}) => {
+  //console.log(item.nome, item.email);
   return (
     <View style={style.container}>
       <TouchableHighlight
@@ -12,9 +13,8 @@ const Item = ({title, onPress}) => {
         onPress={onPress}
         underlayColor={colors.primaryDark}>
         <>
-          <Text style={style.text}>{title}</Text>
-          {/* <Text>{item.name}</Text>
-          <Text>{item.email}</Text> */}
+          <Text style={style.textNome}>{item.nome}</Text>
+          <Text style={style.textEmail}>{item.email}</Text>
         </>
       </TouchableHighlight>
     </View>
@@ -25,25 +25,32 @@ export default Item;
 
 const style = StyleSheet.create({
   container: {
-    //marginTop: 12,
+    marginTop: 20,
     flexDirection: 'row',
     alignItems: 'center', //alinhamento horizontal
     justifyContent: 'center', //alinhamento vertical
   },
   button: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primaryLight,
     borderRadius: 10,
-    width: 80,
+    width: 180,
+    height: 80,
     //borderColor: 'green',
     textShadowColor: 'black',
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
     margin: 12,
   },
-  text: {
-    color: 'white',
+  textNome: {
+    color: 'white', //não está funcionando
     textAlign: 'center',
+    fontSize: 18,
+  },
+  textEmail: {
+    color: 'white', //não está funcionando
+    textAlign: 'center',
+    fontSize: 14,
   },
 });
