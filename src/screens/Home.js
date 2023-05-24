@@ -16,7 +16,7 @@ const Home = ({navigation}) => {
       .then(function (querySnapshot) {
         let arrayDados = [];
         querySnapshot.forEach(function (doc) {
-          console.log(doc.id, ' => ', doc.data());
+          //console.log(doc.id, ' => ', doc.data());
           const user = {
             id: doc.id,
             nome: doc.data().nome,

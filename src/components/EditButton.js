@@ -2,24 +2,25 @@ import React from 'react';
 import {View, Text, TouchableHighlight, StyleSheet} from 'react-native';
 import {colors} from '../assets/colors';
 
-const LittleButton = ({entrar}, text) => {
+const EditButton = ({editar}) => {
   return (
-    <View style={style.entrar}>
-      <TouchableHighlight onPress={entrar} underlayColor={'transparent'}>
-        <Text style={{color: 'white', fontSize: 20}}>Entrar</Text>
+    <View style={style.editar}>
+      <TouchableHighlight
+        underlayColor={'transparent'}
+        style={style.button}
+        onPress={editar}>
+        <Text style={{color: 'white', fontSize: 20}}>Editar</Text>
       </TouchableHighlight>
     </View>
   );
 };
 
-export default LittleButton;
-
+export default EditButton;
 const style = StyleSheet.create({
-  entrar: {
-    //backgroundColor: '#FF1493',
+  editar: {
     backgroundColor: colors.primary,
     borderRadius: 10,
-    borderColor: '#A7095D',
+    //borderColor: 'green',
     textShadowColor: 'black',
     paddingTop: 20,
     paddingBottom: 20,
