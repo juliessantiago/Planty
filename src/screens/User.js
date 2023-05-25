@@ -74,7 +74,7 @@ export default User;
 
 const style = StyleSheet.create({
   container: {
-    //marginTop: 60,
+    marginTop: 80,
     //flexDirection: 'row',
     alignItems: 'center', //alinhamento horizontal
     justifyContent: 'center', //alinhamento vertical

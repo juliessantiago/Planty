@@ -31,26 +31,29 @@ const style = StyleSheet.create({
     justifyContent: 'center', //alinhamento vertical
   },
   button: {
+    //button é o item em si
     backgroundColor: colors.primaryLight,
-    borderRadius: 10,
-    width: 180,
-    height: 80,
+    borderRadius: 12,
+    width: 250,
+    height: 90,
     //borderColor: 'green',
     textShadowColor: 'black',
-    paddingTop: 10,
-    paddingBottom: 10,
     paddingLeft: 10,
     paddingRight: 10,
-    margin: 12,
+    marginLeft: 20,
+    marginRight: 20,
+    paddingTop: 10, 
+    paddingBottom: 10,
+    textAlign: 'center',
   },
   textNome: {
     color: 'white', //não está funcionando
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 14,
   },
   textEmail: {
     color: 'white', //não está funcionando
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: 12,
   },
 });
