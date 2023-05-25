@@ -68,7 +68,7 @@ const Preload = ({navigation}) => {
     <View style={style.pagePreload}>
       <Image
         style={style.image}
-        source={require('.././assets/images/lotus.png')}
+        source={require('.././assets/images/plantar.png')}
         accessibilityLabel="logo do signIn"
       />
     </View>
