@@ -9,7 +9,7 @@ const Preload = ({navigation}) => {
   const getUserCache = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('user'); //precisa ser a mesma chave definida lá no signIn
-      console.log('getUserCache' + jsonValue);
+      //console.log('getUserCache' + jsonValue);
       return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (error) {
       console.log('Não foi possível recuperar usuário cacheado' + error);
