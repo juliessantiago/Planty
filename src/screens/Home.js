@@ -10,30 +10,39 @@ const Home = ({navigation}) => {
   const [data, setData] = useState([]);
 
   const getUsers = () => {
-    firestore()
+    const switchOffListener = firestore()
       .collection('users')
-      .get()
-      .then(function (querySnapshot) {
-        let arrayDados = [];
-        querySnapshot.forEach(function (doc) {
-          //console.log(doc.id, ' => ', doc.data());
-          const user = {
-            id: doc.id,
-            nome: doc.data().nome,
-            email: doc.data().email,
-          };
-          arrayDados.push(user);
-          //console.log(arrayzinho);
-        });
-        setData(arrayDados);
-      });
-    // .catch((error) => {
-    //   console.log('testando')
-    // })
+      .onSnapshot(
+        //listener: dados vão ser retornados toda vez que houver uma alteração
+        function (querySnapshot) {
+          let arrayDados = [];
+          querySnapshot.forEach(function (doc) {
+            //console.log(doc.id, ' => ', doc.data());
+            const user = {
+              id: doc.id,
+              nome: doc.data().nome,
+              email: doc.data().email,
+            };
+            arrayDados.push(user);
+            //console.log(arrayzinho);
+          });
+          setData(arrayDados);
+        },
+        error => {
+          console.log(
+            error + 'HOME - Não foi possível recuperar dados dos users',
+          );
+        },
+      );
+    return switchOffListener;
   };
 
   useEffect(() => {
-    getUsers();
+    const switchOffListener = getUsers();
+    return () => {
+      console.log('desmontando componente Home e desligando listener');
+      switchOffListener();
+    };
   }, []);
 
   const routeUser = item => {
@@ -58,7 +67,7 @@ const Home = ({navigation}) => {
           keyExtractor={item => item.id}
         />
       </View>
-      <View>
+      <View style={style.bottom}>
         <LogoutButton style={style.button} />
       </View>
     </SafeAreaView>
@@ -68,11 +77,17 @@ export default Home;
 
 const style = StyleSheet.create({
   pageHome: {
+    display: 'flex',
+    height: '80%',
     //backgroundColor: 'gray',
     //height: '100%',
   },
+  bottom: {
+    height: '20%',
+  },
   button: {
-    width: '50%',
+    marginLeft: '40',
+    //width: '50%',
   },
   nameApp: {
     color: colors.primaryDark,

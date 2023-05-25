@@ -1,22 +1,51 @@
 import React, {useState, useEffect} from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import {View, TextInput, StyleSheet, ToastAndroid} from 'react-native';
 import {colors} from '../assets/colors';
 import EditButton from '../components/EditButton';
+import firestore from '@react-native-firebase/firestore';
 
-// import { Container } from './styles';
+const User = ({route, navigation}) => {
+  const [nome, setNome] = useState(' ');
+  const [email, setEmail] = useState(' ');
+  const [uid, setUid] = useState(' ');
 
-const User = ({route}) => {
-  const [nome, setNome] = useState('teste');
-  const [email, setEmail] = useState('teste');
   //console.log('params.user.nome ' + route.params.user.nome);
 
   useEffect(() => {
     setNome(route.params.user.nome);
     setEmail(route.params.user.email);
+    setUid(route.params.user.id);
   }, []);
 
+  const showToastWithGravity = message => {
+    ToastAndroid.showWithGravity(
+      message,
+      ToastAndroid.LONG,
+      ToastAndroid.CENTER,
+      30,
+      30,
+    );
+  };
   const editar = () => {
-    alert('edição');
+    firestore()
+      .collection('users')
+      .doc(uid)
+      .set(
+        {
+          nome: nome, //valor nome vem da state
+        },
+        {merge: true},
+      )
+      .then(() => {
+        setNome(' ');
+        setEmail(' ');
+        setUid(' ');
+        showToastWithGravity('Dados atualizados com sucesso');
+        navigation.goBack();
+      })
+      .catch(error => {
+        console.log('Erro - não foi possível alterar o usuário ' + error);
+      });
   };
   return (
     <View style={style.container}>
