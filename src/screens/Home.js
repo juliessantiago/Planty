@@ -5,9 +5,11 @@ import LogoutButton from '../components/LogoutButton';
 import Item from '../components/Item';
 import firestore from '@react-native-firebase/firestore';
 import {CommonActions} from '@react-navigation/native';
+import LoadingIndicator from '../components/LoadingIndicator';
 
 const Home = ({navigation}) => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getUsers = () => {
     const switchOffListener = firestore()
@@ -27,6 +29,7 @@ const Home = ({navigation}) => {
             //console.log(arrayzinho);
           });
           setData(arrayDados);
+          setLoading(false);
         },
         error => {
           console.log(
@@ -66,6 +69,9 @@ const Home = ({navigation}) => {
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
+        {loading && <LoadingIndicator />}
+        {/* usando javascript para criar a lógica, passando um state (loading) */}
+        {/* se state é verdadeiro, LoadingIndicator vai aparecer */}
       </View>
       <View style={style.bottom}>
         <LogoutButton style={style.button} />
@@ -78,15 +84,16 @@ export default Home;
 const style = StyleSheet.create({
   pageHome: {
     display: 'flex',
-    height: '80%',
-    //backgroundColor: 'gray',
     //height: '100%',
+    //backgroundColor: 'gray',
+    height: '80%',
   },
   bottom: {
     height: '20%',
   },
   button: {
-    marginLeft: '40',
+    paddingTop: '10',
+    marginLeft: 40,
     //width: '50%',
   },
   nameApp: {

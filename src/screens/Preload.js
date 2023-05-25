@@ -66,12 +66,11 @@ const Preload = ({navigation}) => {
     [];
   return (
     <View style={style.pagePreload}>
-      {/* <Image
+      <Image
         style={style.image}
         source={require('.././assets/images/lotus.png')}
         accessibilityLabel="logo do signIn"
-      /> */}
-      <Text style={style.nameApp}>Aguarde...</Text>
+      />
     </View>
   );
 };
