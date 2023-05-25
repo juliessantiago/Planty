@@ -20,8 +20,6 @@ import firestore from '@react-native-firebase/firestore';
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState(' ');
   const [pass, setPass] = useState(' ');
-
-  //console.log(AsyncStorage);
   const entrar = () => {
     auth()
       .signInWithEmailAndPassword(email, pass)
