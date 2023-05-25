@@ -31,6 +31,7 @@ const SignIn = ({navigation}) => {
           Alert.alert('Desculpe...', 'Você deve verificar seu e-mail primeiro');
           return;
         }
+        storeUserCache({email, pass});
         getUser();
       })
       .catch(error => {
@@ -90,7 +91,6 @@ const SignIn = ({navigation}) => {
         //console.log(doc);
         if (doc.exists) {
           //console.log('Dados' + doc.data());
-          storeUserCache(doc.data()); //chamando função para salvar dados do user em cache
         } else {
           console.log('Documento não existe no banco de dados');
         }
@@ -116,6 +116,7 @@ const SignIn = ({navigation}) => {
             returnKeyType="next"
             onChangeText={text => setEmail(text)}
             onEndEditing={() => this.passTextInput.focus}
+            underlayColor={'transparent'}
           />
           <TextInput
             ref={ref => (this.passTextInput = ref)}
@@ -132,7 +133,7 @@ const SignIn = ({navigation}) => {
             </Text>
           </View>
           <TouchableHighlight underlayColor={colors.primary}>
-            <LittleButton entrar={entrar} />
+            <LittleButton entrar={entrar} text="Entrar" />
           </TouchableHighlight>
         </View>
 
@@ -172,9 +173,9 @@ const style = StyleSheet.create({
     flex: 8,
   },
   image: {
-    width: 120,
-    height: 120,
-    margin: 8,
+    width: 100,
+    height: 100,
+    marginBottom: 16,
   },
   divInput: {
     marginTop: 20,
@@ -182,10 +183,10 @@ const style = StyleSheet.create({
     width: '70%',
   },
   input: {
-    width: '60%',
+    width: '80%',
     height: 50,
     borderBottomColor: colors.accent,
-    borderBottomWidth: 1,
+    borderBottomWidth: 1.2,
     fontSize: 18,
     padding: 12,
     paddingBottom: 10,
@@ -193,7 +194,7 @@ const style = StyleSheet.create({
   links: {
     //paddingTop: 30,
     color: colors.primaryDark,
-    fontSize: 16,
+    fontSize: 12,
     marginBottom: 2,
     paddingRight: 20,
     textAlign: 'right',
@@ -221,6 +222,6 @@ const style = StyleSheet.create({
   textBotton: {
     padding: 0,
     marginTop: 0,
-    fontSize: 16,
+    fontSize: 12,
   },
 });

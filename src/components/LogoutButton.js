@@ -3,7 +3,7 @@ import {TouchableHighlight, View, StyleSheet, Image} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import RNRestart from 'react-native-restart';
-import {colors} from '../assets/colors';
+
 
 // import { Container } from './styles';
 const sair = () => {
@@ -44,7 +44,7 @@ export default LogoutButton;
 const style = StyleSheet.create({
   button: {
     marginLeft: '60%',
-    marginTop: '50%',
+    marginTop: '10%',
   },
   container: {},
   image: {

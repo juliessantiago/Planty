@@ -2,12 +2,13 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {StatusBar} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from './src/screens/Home';
 import SignIn from './src/screens/SignIn';
 import SignUp from './src/screens/SignUp';
 import Forgot from './src/screens/Forgot';
 import {colors} from './src/assets/colors';
-// import Preload from './src/screens/Preload';
+import Preload from './src/screens/Preload';
+import Users from './src/screens/Users';
+import User from './src/screens/User';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,14 +16,15 @@ export default function App() {
   return (
     <NavigationContainer>
       <StatusBar animated={true} backgroundColor={colors.primaryDark} />
-      <Stack.Navigator initialRouteName="SignIn">
+      <Stack.Navigator initialRouteName="Preload">
         <Stack.Screen name="Entrar" component={SignIn} options={signInStyle} />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Preload"
           component={Preload}
           options={preloadStyle}
-        /> */}
-        <Stack.Screen name="Home" component={Home} options={homeStyle} />
+        />
+        <Stack.Screen name="Users" component={Users} options={homeStyle} />
+        <Stack.Screen name="EditaUser" component={User} options={userStyle} />
         <Stack.Screen name="SignUp" component={SignUp} options={signUpStyle} />
         <Stack.Screen name="Forgot" component={Forgot} options={forgotStyle} />
       </Stack.Navigator>
@@ -36,7 +38,7 @@ const signInStyle = {
   headerTitleStyle: {color: 'white'},
 };
 const homeStyle = {
-  title: 'Home',
+  title: 'Users',
   headerStyle: {backgroundColor: colors.primary},
   headerTitleStyle: {color: 'white'},
 };
@@ -52,9 +54,15 @@ const forgotStyle = {
   headerTitleStyle: {color: 'white'},
   headerTintColor: 'white',
 };
-// const preloadStyle = {
-//   headerShown: false,
-//   // title: 'Recuperar senha',
-//   // headerStyle: {backgroundColor: colors.primary},
-//   // headerTitleStyle: {color: 'white'},
-// };
+const preloadStyle = {
+  headerShown: false,
+  // title: 'Recuperar senha',
+  // headerStyle: {backgroundColor: colors.primary},
+  // headerTitleStyle: {color: 'white'},
+};
+const userStyle = {
+  title: 'Editar usuário',
+  headerStyle: {backgroundColor: colors.primary},
+  headerTitleStyle: {color: 'white'},
+  headerTintColor: 'white',
+};
