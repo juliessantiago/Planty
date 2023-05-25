@@ -73,7 +73,7 @@ const SignIn = ({navigation}) => {
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: 'Home'}],
+          routes: [{name: 'Users'}],
         }),
       );
     } catch (error) {

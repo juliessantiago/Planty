@@ -42,7 +42,7 @@ const style = StyleSheet.create({
     paddingRight: 10,
     marginLeft: 20,
     marginRight: 20,
-    paddingTop: 10, 
+    paddingTop: 10,
     paddingBottom: 10,
     textAlign: 'center',
   },

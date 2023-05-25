@@ -4,7 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import RNRestart from 'react-native-restart';
 
-
 // import { Container } from './styles';
 const sair = () => {
   AsyncStorage.removeItem('user')
