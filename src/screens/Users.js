@@ -7,7 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 import {CommonActions} from '@react-navigation/native';
 import LoadingIndicator from '../components/LoadingIndicator';
 
-const Home = ({navigation}) => {
+const Users = ({navigation}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -79,7 +79,7 @@ const Home = ({navigation}) => {
     </SafeAreaView>
   );
 };
-export default Home;
+export default Users;
 
 const style = StyleSheet.create({
   pageHome: {
