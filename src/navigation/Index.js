@@ -1,15 +1,15 @@
 import React from 'react';
-import { View } from 'react-native';
-import { AuthUserProvider } from '../context/AuthUserProvider';
+import {AuthUserProvider} from '../context/AuthUserProvider';
+import Routes from './Routes';
 
 // import { Container } from './styles';
 
 const Providers = () => {
   return (
     <AuthUserProvider>
-        <Routes />
+      <Routes />
     </AuthUserProvider>
   );
-}
+};
 
 export default Providers;

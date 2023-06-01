@@ -13,7 +13,7 @@ import {colors} from '../assets/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LittleButton from '../components/LittleButton';
 import auth from '@react-native-firebase/auth';
-import {CommonActions} from '@react-navigation/native';
+// import {CommonActions} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
 
@@ -68,12 +68,12 @@ const SignIn = ({navigation}) => {
     try {
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem('user', jsonValue);
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{name: 'Users'}],
-        }),
-      );
+      // navigation.dispatch(
+      //   CommonActions.reset({
+      //     index: 0,
+      //     routes: [{name: 'Users'}],
+      //   }),
+      // );
     } catch (error) {
       console.log('Não salvou usuário em cache' + error);
     }

@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import {View, Text, Image, StyleSheet, Alert} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import {colors} from '../assets/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import auth from '@react-native-firebase/auth';
+// import auth from '@react-native-firebase/auth';
 import {CommonActions} from '@react-navigation/native';
 
 const Preload = ({navigation}) => {
@@ -19,46 +19,51 @@ const Preload = ({navigation}) => {
   const loginUser = async () => {
     const user = await getUserCache();
     if (user) {
-      //console.log(user.pass);
-      //Usuário está cacheado
-      auth()
-        .signInWithEmailAndPassword(user.email, user.pass)
-        .then(() => {
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{name: 'Users'}],
-            }),
-          );
-        })
-        .catch(error => {
-          switch (error.code) {
-            case 'auth/user-not-found':
-              Alert.alert('Opa!', 'Não encontramos seu e-mail');
-              break;
-            case 'auth/wrong-password':
-              Alert.alert('Houston, we have a problem!', 'Senha incorreta');
-              break;
-            case 'auth/invalid-email':
-              Alert.alert(
-                'Oops!',
-                'Insira um formato como "seunome@suaempresa.com',
-              );
-              break;
-            case 'auth/user-disabled':
-              Alert.alert('Pedimos desculpas', 'Seu usuário está inativado');
-              break;
-          }
-        });
-    } else {
-      //Usuário não foi cacheado, então é preciso fazer login
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: 'Entrar'}],
+          routes: [{name: 'Users'}],
         }),
       );
+      //console.log(user.pass);
+      //Usuário está cacheado
+      // auth()
+      //   .signInWithEmailAndPassword(user.email, user.pass)
+      //   .then(() => {
+      //lógica de redirecionamento para users foi retirada daqui porque
+      //Routes (navigation) já está escutando a autenticação no banco
+      //se usuário ainda tem sessão, a Routes direciona já pra página correta
+      //   })
+      //   .catch(error => {
+      //     switch (error.code) {
+      //       case 'auth/user-not-found':
+      //         Alert.alert('Opa!', 'Não encontramos seu e-mail');
+      //         break;
+      //       case 'auth/wrong-password':
+      //         Alert.alert('Houston, we have a problem!', 'Senha incorreta');
+      //         break;
+      //       case 'auth/invalid-email':
+      //         Alert.alert(
+      //           'Oops!',
+      //           'Insira um formato como "seunome@suaempresa.com',
+      //         );
+      //         break;
+      //       case 'auth/user-disabled':
+      //         Alert.alert('Pedimos desculpas', 'Seu usuário está inativado');
+      //         break;
+      //     }
+      //   });
+    } else {
+      //Usuário não foi cacheado, então é preciso fazer login
+      // navigation.dispatch(
+      //   CommonActions.reset({
+      //     index: 0,
+      //     routes: [{name: 'Entrar'}],
+      //   }),
+      // );
     }
+    //tudo relacionado a stacks foi deixado sob responsabilidade de routes
+    //se esta logado -> appStack, se não está -> authStack
   };
   useEffect(() => {
     loginUser();

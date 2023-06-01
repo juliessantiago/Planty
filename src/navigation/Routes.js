@@ -4,6 +4,8 @@ import AppStack from './AppStack';
 import AuthStack from './AuthStack';
 import {AuthUserContext} from '../context/AuthUserProvider';
 import auth from '@react-native-firebase/auth';
+import {colors} from '../assets/colors';
+import {StatusBar} from 'react-native';
 
 const Routes = () => {
   const {user, setUser} = useContext(AuthUserContext);
@@ -13,8 +15,10 @@ const Routes = () => {
     });
     return listener; //desligando o listener de estado de autenticação ao desmontar o componente
   }, []);
+  
   return (
     <NavigationContainer>
+      <StatusBar backgroundColor={colors.primaryDark} />
       {user ? <AppStack /> : <AuthStack />}
       {/* se user existir, mostra screens do app, se não houver user, mostra screen de autenticação */}
     </NavigationContainer>
