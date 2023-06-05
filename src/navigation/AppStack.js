@@ -1,21 +1,29 @@
 import React from 'react';
-// import 'react-native-gesture-handler';
-import {NavigationContainer} from '@react-navigation/native';
-import {StatusBar} from 'react-native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Users from '../screens/Users';
 import User from '../screens/User';
 import {colors} from '../assets/colors';
 import Preload from '../screens/Preload';
 import Flowers from '../screens/Flowers';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-const AppStack = () => {
+export default function  AppStack() {
   return (
     // // <NavigationContainer>
     //   <StatusBar animated={true} backgroundColor={colors.primaryDark} />
-    <Stack.Navigator initialRouteName="Preload">
+    <Stack.Navigator
+      initialRouteName="Preload"
+      screenOptions={{
+        headerShow: 'true',
+        headerStyle: {
+          backgroundColor: colors.primary,
+          paddingRight: 5,
+        },
+        // headerTintColor: 'green',
+        // headerRight: () => () => <LogoutButton />,
+      }}>
+      {/* drawerContent={(props) => <CustomDrawerContent {..props} />} */}
       <Stack.Screen name="Preload" component={Preload} options={preloadStyle} />
       <Stack.Screen name="Users" component={Users} options={usersStyle} />
       <Stack.Screen name="EditaUser" component={User} options={userStyle} />
@@ -24,7 +32,6 @@ const AppStack = () => {
     // </NavigationContainer>
   );
 };
-export default AppStack;
 
 const usersStyle = {
   title: 'Users',

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useContext, useEffect} from 'react';
 import AppStack from './AppStack';
@@ -15,7 +16,7 @@ const Routes = () => {
     });
     return listener; //desligando o listener de estado de autenticação ao desmontar o componente
   }, []);
-  
+
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={colors.primaryDark} />
