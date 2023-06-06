@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableHighlight, StyleSheet} from 'react-native';
+import {View, Text, TouchableHighlight, StyleSheet, Image} from 'react-native';
 import {colors} from '../../assets/colors';
 
 // import { Container } from './styles';
@@ -13,9 +13,16 @@ const Item = ({item, onPress}) => {
         onPress={onPress}
         underlayColor={colors.primaryDark}>
         <>
+          <View style={style.containerImg}>
+            <Image
+              style={style.image}
+              source={require('../../assets/images/flor_generica.png')}
+              accessibilityLabel="flor"
+            />
+          </View>
           <Text style={style.textNome}>Flor: {item.nome}</Text>
           <Text style={style.textEmail}>Cor: {item.cor}</Text>
-          <Text style={style.textEmail}>Época plantio: {item.plantio}</Text>
+          <Text style={style.textEmail}>Plantio: {item.plantio}</Text>
         </>
       </TouchableHighlight>
     </View>
@@ -27,7 +34,7 @@ export default Item;
 const style = StyleSheet.create({
   container: {
     marginTop: 20,
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center', //alinhamento horizontal
     justifyContent: 'center', //alinhamento vertical
   },
@@ -35,26 +42,32 @@ const style = StyleSheet.create({
     //button é o item em si
     backgroundColor: colors.primaryLight,
     borderRadius: 12,
-    width: 250,
-    height: 90,
+    width: 180,
+    height: 180,
     //borderColor: 'green',
     textShadowColor: 'black',
-    paddingLeft: 10,
-    paddingRight: 10,
     marginLeft: 20,
     marginRight: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
+    padding: 10,
     textAlign: 'center',
   },
   textNome: {
-    color: 'white', //não está funcionando
+    color: 'white',
     textAlign: 'center',
     fontSize: 14,
   },
   textEmail: {
-    color: 'white', //não está funcionando
+    color: 'white',
     textAlign: 'center',
     fontSize: 12,
+  },
+  containerImg: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    margin: 8,
+    width: 60,
+    height: 60,
   },
 });

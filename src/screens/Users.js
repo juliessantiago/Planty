@@ -10,7 +10,7 @@ import LoadingIndicator from '../components/LoadingIndicator';
 
 const Users = ({navigation}) => {
   const flowers = () => {
-    console.log('chamou função flowers');
+    //console.log('chamou função flowers');
     navigation.navigate('Flowers');
   };
 
@@ -111,5 +111,14 @@ const style = StyleSheet.create({
     color: colors.primaryDark,
     fontSize: 40,
     marginTop: 10,
+  },
+  links: {
+    //paddingTop: 30,
+    color: colors.primaryDark,
+    fontSize: 12,
+    marginBottom: 2,
+    paddingRight: 20,
+    textAlign: 'right',
+    fontStyle: 'italic',
   },
 });

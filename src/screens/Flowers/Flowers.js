@@ -3,7 +3,6 @@ import {View, FlatList, SafeAreaView, StyleSheet} from 'react-native';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import {colors} from '../../assets/colors';
 import Item from '../../screens/Flowers/Item';
-import {CommonActions} from '@react-navigation/native';
 import {FlowerContext} from '../../context/FlowerProvider';
 
 const Flowers = ({navigation}) => {
@@ -23,12 +22,12 @@ const Flowers = ({navigation}) => {
   //Para isso não acontecer, chamamos getFlowers no Preload
   const routeFlower = item => {
     //envia para rota de alteração de dados do usuário
-    navigation.dispatch(
-      CommonActions.navigate({
-        name: 'EditaFlower',
-        params: {flower: item},
-      }),
-    );
+    // navigation.dispatch(
+    //   CommonActions.navigate({
+    //     name: 'Flower',
+    //     params: {flower: item},
+    //   }),
+    // );
   };
 
   const renderItem = ({item}) => (

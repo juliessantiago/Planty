@@ -5,10 +5,11 @@ import {colors} from '../assets/colors';
 import Preload from '../screens/Preload';
 import Flowers from '../screens/Flowers/Flowers';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Flower from '../screens/Flower/index';
 
 const Stack = createNativeStackNavigator();
 
-export default function  AppStack() {
+export default function AppStack() {
   return (
     // // <NavigationContainer>
     //   <StatusBar animated={true} backgroundColor={colors.primaryDark} />
@@ -27,11 +28,12 @@ export default function  AppStack() {
       <Stack.Screen name="Preload" component={Preload} options={preloadStyle} />
       <Stack.Screen name="Users" component={Users} options={usersStyle} />
       <Stack.Screen name="EditaUser" component={User} options={userStyle} />
-      <Stack.Screen name="Flowers" component={Flowers} options={flowersStyle}/>
+      <Stack.Screen name="Flowers" component={Flowers} options={flowersStyle} />
+      <Stack.Screen name="Flower" compornent={Flower} options={flowerStyle} />
     </Stack.Navigator>
     // </NavigationContainer>
   );
-};
+}
 
 const usersStyle = {
   title: 'Users',
@@ -59,3 +61,9 @@ const flowersStyle = {
   headerTintColor: 'white',
 };
 
+const flowerStyle = {
+  title: 'Editar Flor',
+  headerStyle: {backgroundColor: colors.primary},
+  headerTitleStyle: {color: 'white'},
+  headerTintColor: 'white',
+};
