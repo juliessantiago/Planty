@@ -1,12 +1,16 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {View, Image, StyleSheet, Text} from 'react-native';
 import {colors} from '../assets/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import auth from '@react-native-firebase/auth';
 import {CommonActions} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {AuthUserContext} from '../context/AuthUserProvider';
+import {FlowerContext} from '../context/FlowerProvider';
 
 const Preload = ({navigation}) => {
+  const {setUser} = useContext(AuthUserContext);
+  const {getFlowers} = useContext(FlowerContext);
   const getUserCache = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('user'); //precisa ser a mesma chave definida lá no signIn
@@ -19,6 +23,7 @@ const Preload = ({navigation}) => {
 
   const loginUser = async () => {
     const user = await getUserCache();
+    setUser(user);
     if (user) {
       navigation.dispatch(
         CommonActions.reset({
@@ -69,6 +74,10 @@ const Preload = ({navigation}) => {
   useEffect(() => {
     loginUser();
     Icon.loadFont();
+    const linstenerFlowers = getFlowers();
+    return () => {
+      linstenerFlowers;
+    };
   }),
     [];
   return (
@@ -78,7 +87,7 @@ const Preload = ({navigation}) => {
         source={require('.././assets/images/plantar.png')}
         accessibilityLabel="logo do signIn"
       />
-      {/* <Text style={style.nameApp}>Planty</Text> */}
+      <Text style={style.nameApp}>Planty</Text>
     </View>
   );
 };

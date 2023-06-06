@@ -1,14 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, FlatList, SafeAreaView} from 'react-native';
+import {View, StyleSheet, FlatList, SafeAreaView, Text} from 'react-native';
 import {colors} from '../assets/colors';
 import LogoutButton from '../components/LogoutButton';
 import Item from '../components/Item';
 import firestore from '@react-native-firebase/firestore';
 import {CommonActions} from '@react-navigation/native';
 import LoadingIndicator from '../components/LoadingIndicator';
-import Icon from 'react-native-vector-icons/Ionicons';
+// import Icon from 'react-native-vector-icons/Ionicons';
 
 const Users = ({navigation}) => {
+  const flowers = () => {
+    console.log('chamou função flowers');
+    navigation.navigate('Flowers');
+  };
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -47,7 +52,6 @@ const Users = ({navigation}) => {
       console.log('desmontando componente Home e desligando listener');
       switchOffListener();
     };
-    
   }, []);
 
   const routeUser = item => {
@@ -77,6 +81,10 @@ const Users = ({navigation}) => {
         {/* se state é verdadeiro, LoadingIndicator vai aparecer */}
       </View>
       <View style={style.bottom}>
+        {/* GAMBIARRA!  */}
+        <Text style={style.links} onPress={flowers}>
+          Flowers
+        </Text>
         <LogoutButton style={style.button} />
       </View>
     </SafeAreaView>
@@ -89,7 +97,7 @@ const style = StyleSheet.create({
     display: 'flex',
     //height: '100%',
     //backgroundColor: 'gray',
-    height: '80%',
+    height: '70%',
   },
   bottom: {
     height: '20%',

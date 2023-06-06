@@ -1,5 +1,6 @@
 import React from 'react';
 import {AuthUserProvider} from '../context/AuthUserProvider';
+import {FlowerProvider} from '../context/FlowerProvider';
 import Routes from './Routes';
 
 // import { Container } from './styles';
@@ -7,7 +8,9 @@ import Routes from './Routes';
 const Providers = () => {
   return (
     <AuthUserProvider>
-      <Routes />
+      <FlowerProvider>
+        <Routes />
+      </FlowerProvider>
     </AuthUserProvider>
   );
 };

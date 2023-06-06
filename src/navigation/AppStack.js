@@ -3,7 +3,7 @@ import Users from '../screens/Users';
 import User from '../screens/User';
 import {colors} from '../assets/colors';
 import Preload from '../screens/Preload';
-import Flowers from '../screens/Flowers';
+import Flowers from '../screens/Flowers/Flowers';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -27,7 +27,7 @@ export default function  AppStack() {
       <Stack.Screen name="Preload" component={Preload} options={preloadStyle} />
       <Stack.Screen name="Users" component={Users} options={usersStyle} />
       <Stack.Screen name="EditaUser" component={User} options={userStyle} />
-      <Stack.Screen name="Flowers" component={Flowers} />
+      <Stack.Screen name="Flowers" component={Flowers} options={flowersStyle}/>
     </Stack.Navigator>
     // </NavigationContainer>
   );
@@ -51,3 +51,11 @@ const userStyle = {
   headerTitleStyle: {color: 'white'},
   headerTintColor: 'white',
 };
+
+const flowersStyle = {
+  title: 'Flores',
+  headerStyle: {backgroundColor: colors.primary},
+  headerTitleStyle: {color: 'white'},
+  headerTintColor: 'white',
+};
+
