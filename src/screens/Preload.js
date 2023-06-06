@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, Text} from 'react-native';
 import {colors} from '../assets/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import auth from '@react-native-firebase/auth';
 import {CommonActions} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Preload = ({navigation}) => {
   const getUserCache = async () => {
@@ -67,6 +68,7 @@ const Preload = ({navigation}) => {
   };
   useEffect(() => {
     loginUser();
+    Icon.loadFont();
   }),
     [];
   return (
@@ -76,6 +78,7 @@ const Preload = ({navigation}) => {
         source={require('.././assets/images/plantar.png')}
         accessibilityLabel="logo do signIn"
       />
+      {/* <Text style={style.nameApp}>Planty</Text> */}
     </View>
   );
 };
@@ -94,7 +97,7 @@ const style = StyleSheet.create({
     height: 150,
   },
   nameApp: {
-    color: colors.primaryDark,
+    color: colors.primaryLight,
     fontSize: 40,
     marginTop: 10,
   },

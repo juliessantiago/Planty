@@ -6,6 +6,7 @@ import Item from '../components/Item';
 import firestore from '@react-native-firebase/firestore';
 import {CommonActions} from '@react-navigation/native';
 import LoadingIndicator from '../components/LoadingIndicator';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Users = ({navigation}) => {
   const [data, setData] = useState([]);
@@ -46,6 +47,7 @@ const Users = ({navigation}) => {
       console.log('desmontando componente Home e desligando listener');
       switchOffListener();
     };
+    
   }, []);
 
   const routeUser = item => {
@@ -63,6 +65,7 @@ const Users = ({navigation}) => {
   );
   return (
     <SafeAreaView>
+      {/* <Icon name="person-circle-outline" size={25} color={colors.primaryDark} /> */}
       <View style={style.pageHome}>
         <FlatList //cada item dentro da flatlist renderiza o componente que for passado na função render
           data={data}
