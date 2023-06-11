@@ -2,8 +2,9 @@ import React, {useState, useContext, useEffect} from 'react';
 import {View, FlatList, SafeAreaView, StyleSheet} from 'react-native';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import {colors} from '../../assets/colors';
-import Item from '../../screens/Flowers/Item';
+import Item from './Item';
 import {FlowerContext} from '../../context/FlowerProvider';
+import {CommonActions} from '@react-navigation/native';
 
 const Flowers = ({navigation}) => {
   const [data, setData] = useState([]);
@@ -22,12 +23,12 @@ const Flowers = ({navigation}) => {
   //Para isso não acontecer, chamamos getFlowers no Preload
   const routeFlower = item => {
     //envia para rota de alteração de dados do usuário
-    // navigation.dispatch(
-    //   CommonActions.navigate({
-    //     name: 'Flower',
-    //     params: {flower: item},
-    //   }),
-    // );
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: 'Flower',
+        //params: {flower: item},
+      }),
+    );
   };
 
   const renderItem = ({item}) => (

@@ -1,10 +1,11 @@
 import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Users from '../screens/Users';
 import User from '../screens/User';
 import {colors} from '../assets/colors';
 import Preload from '../screens/Preload';
-import Flowers from '../screens/Flowers/Flowers';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Flowers from '../screens/Flowers';
+
 import Flower from '../screens/Flower/index';
 
 const Stack = createNativeStackNavigator();
@@ -29,7 +30,7 @@ export default function AppStack() {
       <Stack.Screen name="Users" component={Users} options={usersStyle} />
       <Stack.Screen name="EditaUser" component={User} options={userStyle} />
       <Stack.Screen name="Flowers" component={Flowers} options={flowersStyle} />
-      <Stack.Screen name="Flower" compornent={Flower} options={flowerStyle} />
+      <Stack.Screen name="Flower" component={Flower} options={flowerStyle} />
     </Stack.Navigator>
     // </NavigationContainer>
   );
