@@ -26,7 +26,7 @@ const Flowers = ({navigation}) => {
     navigation.dispatch(
       CommonActions.navigate({
         name: 'Flower',
-        //params: {flower: item},
+        params: {flower: item},
       }),
     );
   };
