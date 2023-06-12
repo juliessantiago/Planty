@@ -13,6 +13,7 @@ const Flower = ({route, navigation}) => {
   const [uid, setUid] = useState(' ');
   // const [loading, setLoading] = useState(true);
   const {saveFlower} = useContext(FlowerContext);
+  const {deleteFlower} = useContext(FlowerContext);
 
   useEffect(() => {
     //console.log(route.params.flower);
@@ -32,8 +33,24 @@ const Flower = ({route, navigation}) => {
   //   );
   // };
   const excluirFlor = () => {
-    Alert.alert('excluir florzinha');
+    // await deleteFlower(uid);
+    // navigation.goBack();
+    Alert.alert('Atenção ', 'Você tem certeza?', [
+      {
+        text: 'Cancel',
+        onPress: () => navigation.goBack(),
+        style: 'cancel',
+      },
+      {
+        text: 'Sim',
+        onPress: async () => {
+          await deleteFlower(uid);
+          navigation.goBack();
+        },
+      },
+    ]);
   };
+
   const editarFlor = async () => {
     if (nome && cor && plantio) {
       let flower = {};
@@ -99,7 +116,7 @@ const Flower = ({route, navigation}) => {
         value={plantio}
       />
       <EditButton editar={editarFlor} />
-      <DeleteButton excluir={excluirFlor} />
+      {uid ? <DeleteButton excluir={excluirFlor} /> : null}
       {/* {loading && <LoadingIndicator />} */}
     </View>
   );

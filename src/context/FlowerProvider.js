@@ -67,8 +67,24 @@ export const FlowerProvider = ({children}) => {
       })
       .catch(error => {
         console.log(
+             //está caindo aqui sempre mesmo excluindo os dados
           'Não foi possível atualizar dados (FlowerProvider)' + error,
         );
+      });
+  };
+
+  // eslint-disable-next-line prettier/prettier
+  const deleteFlower = async (uid) => {
+    firestore()
+      .collection('flowers')
+      .doc(uid)
+      .delete()
+      .then(() => {
+        showToastWithGravity('Flor excluida com sucesso!');
+      })
+      .catch(error => {
+        //está caindo aqui sempre mesmo excluindo os dados
+        console.log('Não foi possível excluir a flor' + error);
       });
   };
   return (
@@ -77,6 +93,7 @@ export const FlowerProvider = ({children}) => {
         flowers,
         getFlowers,
         saveFlower,
+        deleteFlower,
       }}>
       {children}
     </FlowerContext.Provider>

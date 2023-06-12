@@ -63,7 +63,7 @@ const flowersStyle = {
 };
 
 const flowerStyle = {
-  title: 'Editar Flor',
+  title: 'Flor',
   headerStyle: {backgroundColor: colors.primary},
   headerTitleStyle: {color: 'white'},
   headerTintColor: 'white',
