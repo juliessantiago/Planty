@@ -4,6 +4,7 @@ import {colors} from '../../assets/colors';
 import EditButton from '../../components/EditButton';
 import {FlowerContext} from '../../context/FlowerProvider';
 import LoadingIndicator from '../../components/LoadingIndicator';
+import DeleteButton from '../../components/DeleteButton';
 
 const Flower = ({route, navigation}) => {
   const [nome, setNome] = useState(' ');
@@ -30,7 +31,9 @@ const Flower = ({route, navigation}) => {
   //     30,
   //   );
   // };
-
+  const excluirFlor = () => {
+    Alert.alert('excluir florzinha');
+  };
   const editarFlor = async () => {
     if (nome && cor && plantio) {
       let flower = {};
@@ -96,6 +99,7 @@ const Flower = ({route, navigation}) => {
         value={plantio}
       />
       <EditButton editar={editarFlor} />
+      <DeleteButton excluir={excluirFlor} />
       {/* {loading && <LoadingIndicator />} */}
     </View>
   );
