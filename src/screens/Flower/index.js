@@ -1,55 +1,71 @@
-import React, {useEffect, useState} from 'react';
-import {View, TextInput, StyleSheet, ToastAndroid} from 'react-native';
+import React, {useEffect, useState, useContext} from 'react';
+import {View, TextInput, StyleSheet, Alert} from 'react-native';
 import {colors} from '../../assets/colors';
 import EditButton from '../../components/EditButton';
-import firestore from '@react-native-firebase/firestore';
+import {FlowerContext} from '../../context/FlowerProvider';
+import LoadingIndicator from '../../components/LoadingIndicator';
 
 const Flower = ({route, navigation}) => {
   const [nome, setNome] = useState(' ');
   const [cor, setCor] = useState(' ');
   const [plantio, setPlantio] = useState(' ');
   const [uid, setUid] = useState(' ');
+  // const [loading, setLoading] = useState(true);
+  const {saveFlower} = useContext(FlowerContext);
 
   useEffect(() => {
     //console.log(route.params.flower);
     setNome(route.params.flower.nome);
     setCor(route.params.flower.cor);
-    setPlantio(route.params.flower.plantio);
+    setPlantio(route.params.flower.inicio_plantio);
     setUid(route.params.flower.id);
   }, []); //dados da flor serão trazidos na montagem do componente
 
-  const showToastWithGravity = message => {
-    ToastAndroid.showWithGravity(
-      message,
-      ToastAndroid.LONG,
-      ToastAndroid.CENTER,
-      30,
-      30,
-    );
-  };
+  // const showToastWithGravity = message => {
+  //   ToastAndroid.showWithGravity(
+  //     message,
+  //     ToastAndroid.LONG,
+  //     ToastAndroid.CENTER,
+  //     30,
+  //     30,
+  //   );
+  // };
 
-  const editarFlor = () => {
-    firestore()
-      .collection('flowers')
-      .doc(uid)
-      .set(
-        {
-          nome: nome,
-          cor: cor,
-          plantio: plantio,
-        },
-        {merge: true},
-      )
-      .then(() => {
-        setNome(' ');
-        setCor(' ');
-        setPlantio(' ');
-        showToastWithGravity('Flor atualizada com sucesso!');
-        navigation.goBack();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  const editarFlor = async () => {
+    if (nome && cor && plantio) {
+      let flower = {};
+      flower.uid = uid;
+      flower.nome = nome;
+      flower.cor = cor;
+      flower.inicio_plantio = plantio;
+      //setLoading(true);
+      await saveFlower(flower);
+      navigation.goBack();
+      //setLoading(false);
+    } else {
+      Alert.alert('Atenção ', 'Informe todos os campos');
+    }
+    // firestore()
+    //   .collection('flowers')
+    //   .doc(uid)
+    //   .set(
+    //     {
+    //       nome: nome,
+    //       cor: cor,
+    //       plantio: plantio,
+    //     },
+    //     {merge: true},
+    //   )
+    //   .then(() => {
+    //     setNome(' ');
+    //     setCor(' ');
+    //     setPlantio(' ');
+    //     showToastWithGravity('Flor atualizada com sucesso!');
+    //     navigation.goBack();
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   };
   return (
     <View style={style.container}>
@@ -80,6 +96,7 @@ const Flower = ({route, navigation}) => {
         value={plantio}
       />
       <EditButton editar={editarFlor} />
+      {/* {loading && <LoadingIndicator />} */}
     </View>
   );
 };

@@ -5,7 +5,7 @@ import {colors} from '../../assets/colors';
 // import { Container } from './styles';
 
 const Item = ({item, onPress}) => {
-  console.log(item.nome, item.cor, item.plantio);
+  //console.log(item);
   return (
     <View style={style.container}>
       <TouchableHighlight
@@ -22,7 +22,7 @@ const Item = ({item, onPress}) => {
           </View>
           <Text style={style.textNome}>Flor: {item.nome}</Text>
           <Text style={style.textEmail}>Cor: {item.cor}</Text>
-          <Text style={style.textEmail}>Plantio: {item.plantio}</Text>
+          <Text style={style.textEmail}>Plantio: {item.inicio_plantio}</Text>
         </>
       </TouchableHighlight>
     </View>

@@ -1,10 +1,21 @@
 import React, {createContext, useState} from 'react';
+import ToastAndroid from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 export const FlowerContext = createContext({});
 
 export const FlowerProvider = ({children}) => {
   const [flowers, setFlowers] = useState([]);
+
+  const showToastWithGravity = message => {
+    ToastAndroid.showWithGravity(
+      message,
+      ToastAndroid.LONG,
+      ToastAndroid.CENTER,
+      30,
+      30,
+    );
+  };
 
   const getFlowers = async () => {
     const switchOffListener = firestore()
@@ -18,7 +29,7 @@ export const FlowerProvider = ({children}) => {
             const flower = {
               id: doc.id,
               nome: doc.data().nome,
-              plantio: doc.data().inicio_plantio,
+              inicio_plantio: doc.data().inicio_plantio,
               cor: doc.data().cor,
             };
             arrayDados.push(flower);
@@ -36,11 +47,36 @@ export const FlowerProvider = ({children}) => {
       );
     return switchOffListener;
   };
+
+  // eslint-disable-next-line prettier/prettier
+  const saveFlower = async(value) => {
+    //console.log(value);
+    await firestore()
+      .collection('flowers')
+      .doc(value.uid)
+      .set(
+        {
+          nome: value.nome,
+          cor: value.cor,
+          inicio_plantio: value.inicio_plantio,
+        },
+        {merge: true},
+      )
+      .then(() => {
+        showToastWithGravity('Flor atualizada com sucesso!');
+      })
+      .catch(error => {
+        console.log(
+          'Não foi possível atualizar dados (FlowerProvider)' + error,
+        );
+      });
+  };
   return (
     <FlowerContext.Provider
       value={{
         flowers,
         getFlowers,
+        saveFlower,
       }}>
       {children}
     </FlowerContext.Provider>
