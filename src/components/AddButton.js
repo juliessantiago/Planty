@@ -2,10 +2,13 @@ import React from 'react';
 import {View, Text, TouchableHighlight, StyleSheet} from 'react-native';
 import {colors} from '../assets/colors';
 
-const AddButton = ({}) => {
+const AddButton = ({adicionar}) => {
   return (
     <View style={style.adicionar}>
-      <TouchableHighlight underlayColor={'transparent'} style={style.button}>
+      <TouchableHighlight
+        underlayColor={'transparent'}
+        style={style.button}
+        onPress={adicionar}>
         <Text style={{color: 'white', fontSize: 20, textAlign: 'center'}}>
           +
         </Text>

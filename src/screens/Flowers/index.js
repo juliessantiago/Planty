@@ -32,9 +32,12 @@ const Flowers = ({navigation}) => {
   };
 
   const adicionarFlor = () => {
-    console.log('chamou funcao add flor');
-    Alert.alert('criar nova florzinha');
-    //Não está funcionando
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: 'Flower',
+        params: {flower: null},
+      }),
+    );
   };
   const renderItem = ({item}) => (
     <Item item={item} onPress={() => routeFlower(item)} />
@@ -50,7 +53,7 @@ const Flowers = ({navigation}) => {
         {loading && <LoadingIndicator />}
         {/* usando javascript para criar a lógica, passando um state (loading) */}
         {/* se state é verdadeiro, LoadingIndicator vai aparecer */}
-        <AddButton onPress={adicionarFlor} />
+        <AddButton adicionar={adicionarFlor} />
       </View>
       {/* <View style={style.bottom} /> */}
     </SafeAreaView>
@@ -63,7 +66,7 @@ const style = StyleSheet.create({
     display: 'flex',
     //height: '100%',
     //backgroundColor: 'gray',
-    //height: '90%',
+    height: '95%',
   },
   button: {
     paddingTop: '10',

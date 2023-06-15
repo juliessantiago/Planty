@@ -40,18 +40,15 @@ const style = StyleSheet.create({
   },
   button: {
     //button é o item em si
-    backgroundColor: colors.primaryLight,
+    backgroundColor: 'rgba(255, 125, 194, 0.5)',
     borderRadius: 8,
     width: 180,
     height: 180,
-    //borderColor: 'green',
     textShadowColor: 'black',
     marginLeft: 20,
     marginRight: 20,
     padding: 10,
     textAlign: 'center',
-    borderWidth: 2,
-    borderColor: colors.primary,
   },
   textNome: {
     color: 'white',

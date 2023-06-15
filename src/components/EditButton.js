@@ -9,7 +9,7 @@ const EditButton = ({editar}) => {
         underlayColor={'transparent'}
         style={style.button}
         onPress={editar}>
-        <Text style={{color: 'white', fontSize: 20}}>Editar</Text>
+        <Text style={{color: 'white', fontSize: 12}}>Editar</Text>
       </TouchableHighlight>
     </View>
   );
@@ -22,10 +22,10 @@ const style = StyleSheet.create({
     borderRadius: 10,
     //borderColor: 'green',
     textShadowColor: 'black',
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 90,
-    paddingRight: 90,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 50,
+    paddingRight: 50,
     margin: 12,
   },
 });

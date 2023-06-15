@@ -16,11 +16,16 @@ const Flower = ({route, navigation}) => {
   const {deleteFlower} = useContext(FlowerContext);
 
   useEffect(() => {
-    //console.log(route.params.flower);
-    setNome(route.params.flower.nome);
-    setCor(route.params.flower.cor);
-    setPlantio(route.params.flower.inicio_plantio);
-    setUid(route.params.flower.id);
+    setNome(' ');
+    setCor(' ');
+    setPlantio(' ');
+    setUid(' ');
+    if (route.params.flower) {
+      setNome(route.params.flower.nome);
+      setCor(route.params.flower.cor);
+      setPlantio(route.params.flower.inicio_plantio);
+      setUid(route.params.flower.id);
+    }
   }, []); //dados da flor serão trazidos na montagem do componente
 
   // const showToastWithGravity = message => {
@@ -115,9 +120,13 @@ const Flower = ({route, navigation}) => {
         onChangeText={text => setPlantio(text)}
         value={plantio}
       />
-      <EditButton editar={editarFlor} />
-      {uid ? <DeleteButton excluir={excluirFlor} /> : null}
-      {/* {loading && <LoadingIndicator />} */}
+      <View style={style.bottom}>
+        <EditButton editar={editarFlor} />
+        {route.params.uid !== ' ' ? (
+          <DeleteButton excluir={excluirFlor} />
+        ) : null}
+        {/* {loading && <LoadingIndicator />} */}
+      </View>
     </View>
   );
 };
@@ -139,5 +148,8 @@ const style = StyleSheet.create({
     padding: 12,
     paddingBottom: 10,
     color: 'gray',
+  },
+  bottom: {
+    marginTop: 50,
   },
 });
