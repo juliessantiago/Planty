@@ -1,10 +1,11 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {View, FlatList, SafeAreaView, StyleSheet} from 'react-native';
+import {View, FlatList, SafeAreaView, StyleSheet, Alert} from 'react-native';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import {colors} from '../../assets/colors';
 import Item from './Item';
 import {FlowerContext} from '../../context/FlowerProvider';
 import {CommonActions} from '@react-navigation/native';
+import AddButton from '../../components/AddButton';
 
 const Flowers = ({navigation}) => {
   const [data, setData] = useState([]);
@@ -14,7 +15,6 @@ const Flowers = ({navigation}) => {
   useEffect(() => {
     setData(flowers);
     setLoading(false); //quando monta o componente, para o loading
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flowers]); //quando receber algo de flowers, faz o setData
 
   //a função getFlowers que é definida em FlowerPovider não é chamada aqui
@@ -31,6 +31,11 @@ const Flowers = ({navigation}) => {
     );
   };
 
+  const adicionarFlor = () => {
+    console.log('chamou funcao add flor');
+    Alert.alert('criar nova florzinha');
+    //Não está funcionando
+  };
   const renderItem = ({item}) => (
     <Item item={item} onPress={() => routeFlower(item)} />
   );
@@ -45,8 +50,9 @@ const Flowers = ({navigation}) => {
         {loading && <LoadingIndicator />}
         {/* usando javascript para criar a lógica, passando um state (loading) */}
         {/* se state é verdadeiro, LoadingIndicator vai aparecer */}
+        <AddButton onPress={adicionarFlor} />
       </View>
-      <View style={style.bottom} />
+      {/* <View style={style.bottom} /> */}
     </SafeAreaView>
   );
 };
@@ -57,10 +63,7 @@ const style = StyleSheet.create({
     display: 'flex',
     //height: '100%',
     //backgroundColor: 'gray',
-    height: '80%',
-  },
-  bottom: {
-    height: '20%',
+    //height: '90%',
   },
   button: {
     paddingTop: '10',
@@ -71,5 +74,9 @@ const style = StyleSheet.create({
     color: colors.primaryDark,
     fontSize: 40,
     marginTop: 10,
+  },
+  image: {
+    marginTop: 10,
+    marginLeft: '60%',
   },
 });

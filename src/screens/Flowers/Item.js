@@ -41,7 +41,7 @@ const style = StyleSheet.create({
   button: {
     //button é o item em si
     backgroundColor: colors.primaryLight,
-    borderRadius: 12,
+    borderRadius: 8,
     width: 180,
     height: 180,
     //borderColor: 'green',
@@ -50,6 +50,8 @@ const style = StyleSheet.create({
     marginRight: 20,
     padding: 10,
     textAlign: 'center',
+    borderWidth: 2,
+    borderColor: colors.primary,
   },
   textNome: {
     color: 'white',
