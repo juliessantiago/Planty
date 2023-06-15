@@ -7,6 +7,7 @@ import Preload from '../screens/Preload';
 import Flowers from '../screens/Flowers';
 
 import Flower from '../screens/Flower/index';
+import Home from '../screens/Home/index';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,7 @@ export default function AppStack() {
     // // <NavigationContainer>
     //   <StatusBar animated={true} backgroundColor={colors.primaryDark} />
     <Stack.Navigator
-      initialRouteName="Preload"
+      initialRouteName="MyTabNavigator"
       screenOptions={{
         headerShow: 'true',
         headerStyle: {
@@ -31,6 +32,7 @@ export default function AppStack() {
       <Stack.Screen name="EditaUser" component={User} options={userStyle} />
       <Stack.Screen name="Flowers" component={Flowers} options={flowersStyle} />
       <Stack.Screen name="Flower" component={Flower} options={flowerStyle} />
+      <Stack.Screen name="Home" component={Home} options={homeStyle} />
     </Stack.Navigator>
     // </NavigationContainer>
   );
@@ -40,6 +42,7 @@ const usersStyle = {
   title: 'Users',
   headerStyle: {backgroundColor: colors.primary},
   headerTitleStyle: {color: 'white'},
+  headerTintColor: 'white',
 };
 
 const preloadStyle = {
@@ -64,6 +67,13 @@ const flowersStyle = {
 
 const flowerStyle = {
   title: 'Flor',
+  headerStyle: {backgroundColor: colors.primary},
+  headerTitleStyle: {color: 'white'},
+  headerTintColor: 'white',
+};
+
+const homeStyle = {
+  title: 'Home',
   headerStyle: {backgroundColor: colors.primary},
   headerTitleStyle: {color: 'white'},
   headerTintColor: 'white',

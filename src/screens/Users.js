@@ -11,7 +11,7 @@ import LoadingIndicator from '../components/LoadingIndicator';
 const Users = ({navigation}) => {
   const flowers = () => {
     //console.log('chamou função flowers');
-    navigation.navigate('Flowers');
+    navigation.navigate('Florzinhas');
   };
 
   const [data, setData] = useState([]);
