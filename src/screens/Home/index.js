@@ -43,7 +43,7 @@ import {CommonActions} from '@react-navigation/native';
 
 // export {MyTabNavigator};
 const Home = ({navigation}) => {
-  const batata = () => {
+  const routeUsers = () => {
     navigation.dispatch(
       CommonActions.navigate({
         name: 'Users',
@@ -51,12 +51,21 @@ const Home = ({navigation}) => {
       }),
     );
   };
+
+  const routeFlowers = () => {
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: 'Flowers',
+        //params: {user: item},
+      }),
+    );
+  }
   return (
     <View style={style.container}>
       <TouchableHighlight
         style={style.button}
         underlayColor={colors.primaryDark}
-        onPress={batata}>
+        onPress={routeUsers}>
         <>
           <Icon name="rocket" color="#f1f1f1" size={40} />
           <Text style={style.opcao}>Usuários</Text>
@@ -65,7 +74,8 @@ const Home = ({navigation}) => {
 
       <TouchableHighlight
         style={style.button}
-        underlayColor={colors.primaryDark}>
+        underlayColor={colors.primaryDark}
+        onPress={routeFlowers}>
         <>
           <Icon name="rocket" color="#f1f1f1" size={40} />
           <Text style={style.opcao}>Flores</Text>
