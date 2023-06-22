@@ -13,6 +13,7 @@ const Flowers = ({navigation}) => {
   const {flowers} = useContext(FlowerContext);
 
   useEffect(() => {
+    console.log(flowers);
     setData(flowers);
     setLoading(false); //quando monta o componente, para o loading
   }, [flowers]); //quando receber algo de flowers, faz o setData

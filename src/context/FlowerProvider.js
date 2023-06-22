@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 import ToastAndroid from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
@@ -17,12 +17,17 @@ export const FlowerProvider = ({children}) => {
     );
   };
 
+  useEffect(() => {
+    getFlowers();
+  }, []);
   const getFlowers = async () => {
     const switchOffListener = firestore()
       .collection('flowers')
       .onSnapshot(
         //listener: dados vão ser retornados toda vez que houver uma alteração
         function (querySnapshot) {
+          console.log('getFlowers');
+          console.log(querySnapshot);
           let arrayDados = [];
           querySnapshot.forEach(function (doc) {
             //console.log(doc.id, ' => ', doc.data());

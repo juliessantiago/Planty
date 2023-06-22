@@ -16,21 +16,32 @@ import auth from '@react-native-firebase/auth';
 // import {CommonActions} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
+import {CommonActions} from '@react-navigation/native';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState(' ');
   const [pass, setPass] = useState(' ');
   const entrar = () => {
+    console.log(email);
+    console.log(pass);
     auth()
       .signInWithEmailAndPassword(email, pass)
       .then(() => {
         if (!auth().currentUser.emailVerified) {
+          console.log('não verificado');
           //Se e-mail não foi verificado, não continua o processo
           Alert.alert('Desculpe...', 'Você deve verificar seu e-mail primeiro');
           return;
         }
+        console.log('verificado');
         storeUserCache({email, pass});
         getUser();
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{name: ' AppStack'}],
+          }),
+        );
       })
       .catch(error => {
         switch (error.code) {
@@ -79,7 +90,7 @@ const SignIn = ({navigation}) => {
     }
   };
 
-  const getUser = () => {
+  const getUser = async () => {
     //recuperando dados do usuário logado
     firestore()
       .collection('users')

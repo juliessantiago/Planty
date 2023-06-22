@@ -1,9 +1,7 @@
 import React from 'react';
 import {Text, View, TouchableHighlight, StyleSheet, Alert} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import FlowersTab from '../Flowers/FlowersTab';
-import SeedsTab from '../Seeds/SeedsTab';
-import Icon from 'react-native-vector-icons/FontAwesome';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 import {colors} from '../../assets/colors';
 import {CommonActions} from '@react-navigation/native';
 
@@ -32,9 +30,9 @@ import {CommonActions} from '@react-navigation/native';
 //         component={SeedsTab}
 //         options={{
 //           tabBarLabel: 'Sementes',
-//           tabBarIcon: () => {
+//           tabBarIcon: () => (
 //             <Icon name="car" size={24} color={colors.primaryDark} />;
-//           },
+//           ),
 //         }}
 //       />
 //     </Tab.Navigator>
@@ -59,7 +57,16 @@ const Home = ({navigation}) => {
         //params: {user: item},
       }),
     );
-  }
+  };
+
+  const routeSeeds = () => {
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: 'Seeds',
+        //params: {user: item},
+      }),
+    );
+  };
   return (
     <View style={style.container}>
       <TouchableHighlight
@@ -67,7 +74,7 @@ const Home = ({navigation}) => {
         underlayColor={colors.primaryDark}
         onPress={routeUsers}>
         <>
-          <Icon name="rocket" color="#f1f1f1" size={40} />
+          <Icon name="people-outline" color="#f1f1f1" size={40} />
           <Text style={style.opcao}>Usuários</Text>
         </>
       </TouchableHighlight>
@@ -77,16 +84,17 @@ const Home = ({navigation}) => {
         underlayColor={colors.primaryDark}
         onPress={routeFlowers}>
         <>
-          <Icon name="rocket" color="#f1f1f1" size={40} />
+          <Icon name="flower-outline" color="#f1f1f1" size={40} />
           <Text style={style.opcao}>Flores</Text>
         </>
       </TouchableHighlight>
 
       <TouchableHighlight
         style={style.button}
-        underlayColor={colors.primaryDark}>
+        underlayColor={colors.primaryDark}
+        onPress={routeSeeds}>
         <>
-          <Icon name="rocket" color="#f1f1f1" size={40} />
+          <Icon name="leaf-outline" color="#f1f1f1" size={40} />
           <Text style={style.opcao}>Sementes</Text>
         </>
       </TouchableHighlight>

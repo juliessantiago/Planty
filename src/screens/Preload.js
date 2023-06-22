@@ -7,7 +7,6 @@ import {CommonActions} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {AuthUserContext} from '../context/AuthUserProvider';
 import {FlowerContext} from '../context/FlowerProvider';
-import MyTabNavigator from './Home/MyTabNavigator';
 
 const Preload = ({navigation}) => {
   const {setUser} = useContext(AuthUserContext);
