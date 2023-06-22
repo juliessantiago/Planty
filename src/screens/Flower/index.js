@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
-import {View, TextInput, StyleSheet, Alert} from 'react-native';
+import {View, TextInput, StyleSheet, Alert, Text} from 'react-native';
 import {colors} from '../../assets/colors';
 import EditButton from '../../components/EditButton';
 import {FlowerContext} from '../../context/FlowerProvider';
@@ -94,6 +94,7 @@ const Flower = ({route, navigation}) => {
   };
   return (
     <View style={style.container}>
+      <Text style={style.text}>Editar/Criar Flor</Text>
       <TextInput
         style={style.input}
         placeholder="nome"
@@ -151,5 +152,9 @@ const style = StyleSheet.create({
   },
   bottom: {
     marginTop: 50,
+  },
+  text: {
+    fontSize: 18,
+    color: colors.primaryDark,
   },
 });

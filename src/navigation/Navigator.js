@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {StatusBar} from 'react-native';
 import Users from '../screens/Users';
@@ -31,10 +32,50 @@ const AppStack = () => (
       // headerTintColor: 'green',
       // headerRight: () => () => <LogoutButton />,
     }}>
-    <Tab.Screen name="Home" component={Home} options={homeStyle} />
-    <Tab.Screen name="Users" component={Users} options={usersStyle} />
-    <Tab.Screen name="Flowers" component={Flowers} options={flowersStyle} />
-    <Tab.Screen name="Seeds" component={Seeds} options={seedsStyle} />
+    <Tab.Screen
+      name="Home"
+      component={Home}
+      options={{
+        tabBarLabel: 'Home',
+        tabBarIcon: () => (
+          <Ionicons name="home-outline" color={colors.primaryDark} size={28} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Users"
+      component={Users}
+      options={{
+        tabBarLabel: 'Users',
+        tabBarIcon: () => (
+          <Ionicons
+            name="people-outline"
+            color={colors.primaryDark}
+            size={28}
+          />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Flowers"
+      component={Flowers}
+      options={{
+        tabBarLabel: 'Flowers',
+        tabBarIcon: () => (
+          <Ionicons
+            name="flower-outline"
+            color={colors.primaryDark}
+            size={28}
+          />
+        ),
+      }}
+    />
+    <Tab.Screen name="Seeds" component={Seeds}  options={{
+        tabBarLabel: 'Home',
+        tabBarIcon: () => (
+          <Ionicons name="leaf-outline" color={colors.primaryDark} size={28} />
+        ),
+      }}/>
   </Tab.Navigator>
   // </NavigationContainer>
 );
@@ -66,6 +107,7 @@ const Navigator = () => (
       <Stack.Screen name="AuthStack" component={AuthStack} />
       <Stack.Screen name="AppStack" component={AppStack} />
       <Stack.Screen name="Flower" component={Flower} />
+      <Stack.Screen name="User" component={User} />
     </Stack.Navigator>
   </NavigationContainer>
 );

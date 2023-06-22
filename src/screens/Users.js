@@ -58,7 +58,7 @@ const Users = ({navigation}) => {
     //envia para rota de alteração de dados do usuário
     navigation.dispatch(
       CommonActions.navigate({
-        name: 'EditaUser',
+        name: 'User',
         params: {user: item},
       }),
     );
@@ -81,10 +81,6 @@ const Users = ({navigation}) => {
         {/* se state é verdadeiro, LoadingIndicator vai aparecer */}
       </View>
       <View style={style.bottom}>
-        {/* GAMBIARRA!  */}
-        <Text style={style.links} onPress={flowers}>
-          Flowers
-        </Text>
         <LogoutButton style={style.button} />
       </View>
     </SafeAreaView>
