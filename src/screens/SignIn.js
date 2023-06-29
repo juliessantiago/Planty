@@ -22,8 +22,8 @@ const SignIn = ({navigation}) => {
   const [email, setEmail] = useState(' ');
   const [pass, setPass] = useState(' ');
   const entrar = () => {
-    console.log(email);
-    console.log(pass);
+    //console.log(email);
+    //console.log(pass);
     auth()
       .signInWithEmailAndPassword(email, pass)
       .then(() => {

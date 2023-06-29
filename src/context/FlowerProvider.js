@@ -26,8 +26,8 @@ export const FlowerProvider = ({children}) => {
       .onSnapshot(
         //listener: dados vão ser retornados toda vez que houver uma alteração
         function (querySnapshot) {
-          console.log('getFlowers');
-          console.log(querySnapshot);
+          //console.log('getFlowers');
+          //console.log(querySnapshot);
           let arrayDados = [];
           querySnapshot.forEach(function (doc) {
             //console.log(doc.id, ' => ', doc.data());
@@ -72,7 +72,7 @@ export const FlowerProvider = ({children}) => {
       })
       .catch(error => {
         console.log(
-             //está caindo aqui sempre mesmo excluindo os dados
+          //está caindo aqui sempre mesmo excluindo os dados
           'Não foi possível atualizar dados (FlowerProvider)' + error,
         );
       });
