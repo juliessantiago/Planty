@@ -37,6 +37,7 @@ const AppStack = () => (
       component={Home}
       options={{
         tabBarLabel: 'Home',
+        // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: () => (
           <Ionicons name="home-outline" color={colors.primaryDark} size={28} />
         ),
@@ -47,6 +48,7 @@ const AppStack = () => (
       component={Users}
       options={{
         tabBarLabel: 'Users',
+        // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: () => (
           <Ionicons
             name="people-outline"
@@ -61,6 +63,7 @@ const AppStack = () => (
       component={Flowers}
       options={{
         tabBarLabel: 'Flowers',
+        // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: () => (
           <Ionicons
             name="flower-outline"
@@ -70,8 +73,12 @@ const AppStack = () => (
         ),
       }}
     />
-    <Tab.Screen name="Seeds" component={Seeds}  options={{
-        tabBarLabel: 'Home',
+    <Tab.Screen
+      name="Seeds"
+      component={Seeds}
+      options={{
+        tabBarLabel: 'Sementes',
+        // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: () => (
           <Ionicons name="leaf-outline" color={colors.primaryDark} size={28} />
         ),
