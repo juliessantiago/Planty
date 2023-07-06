@@ -10,6 +10,7 @@ import User from '../screens/User';
 import {colors} from '../assets/colors';
 import Preload from '../screens/Preload';
 import Flowers from '../screens/Flowers';
+import FlowerMap from '../screens/FlowerMap';
 
 import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
@@ -74,6 +75,18 @@ const AppStack = () => (
       }}
     />
     <Tab.Screen
+      name="FlowerMap"
+      component={FlowerMap}
+      options={{
+        tabBarLabel: 'Flores Mapa',
+        // eslint-disable-next-line react/no-unstable-nested-components
+        tabBarIcon: () => (
+          <Ionicons name="leaf-outline" color={colors.primaryDark} size={28} />
+        ),
+      }}
+    />
+
+    <Tab.Screen
       name="Seeds"
       component={Seeds}
       options={{
@@ -115,7 +128,9 @@ const Navigator = () => (
       <Stack.Screen name="AuthStack" component={AuthStack} />
       <Stack.Screen name="AppStack" component={AppStack} />
       <Stack.Screen name="Flower" component={Flower} />
+      <Stack.Screen name="FlowerMap" component={FlowerMap} />
       <Stack.Screen name="User" component={User} />
+      {/* <Stack.Screen name="Home" component={Home} /> */}
     </Stack.Navigator>
   </NavigationContainer>
 );

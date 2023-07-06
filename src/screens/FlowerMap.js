@@ -1,17 +1,17 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
+import {View, StyleSheet, Alert, Dimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {FlowerContext} from '../context/FlowerProvider';
 
 const MapFlowers = () => {
   const [mapType, setMatType] = useState('standard');
   const [markers, setMarkers] = useState([]);
-  const {students} = useContext(FlowerContext);
+  const {flowers} = useContext(FlowerContext);
 
   useEffect(() => {
     //console.log(students);
     let m = [];
-    students.map(s => {
+    flowers.map(s => {
       //console.log(s);
       m.push({
         key: s.uid,
@@ -21,18 +21,21 @@ const MapFlowers = () => {
         },
         title: s.curso,
         description: s.nome,
-        image: require('../../assets/images/map.png'),
+        image: require('../assets/images/map.png'),
       });
     });
     setMarkers(m);
-  }, [students]);
+  }, [flowers]);
 
   return (
     <View style={style.container}>
       <MapView
+        style={{
+          width: Dimensions.get('window').width,
+          height: Dimensions.get('window').height,
+        }}
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         ref={map => (this.map = map)}
-        style={style.map}
         mapType={mapType}
         showsUserLocation={true}
         followsUserLocation={true}
@@ -46,7 +49,7 @@ const MapFlowers = () => {
           );
         }}
         initialRegion={{
-          //região onde deve focar o mapa na inicialização
+          //inicialização do mapa
           latitude: -31.766108372781073,
           longitude: -52.35215652734042,
           latitudeDelta: 0.015, //baseado na documentação
