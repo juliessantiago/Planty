@@ -7,19 +7,19 @@ import LoadingIndicator from '../../components/LoadingIndicator';
 import DeleteButton from '../../components/DeleteButton';
 
 const Flower = ({route, navigation}) => {
-  const [nome, setNome] = useState(' ');
-  const [cor, setCor] = useState(' ');
-  const [plantio, setPlantio] = useState(' ');
-  const [uid, setUid] = useState(' ');
+  const [nome, setNome] = useState('');
+  const [cor, setCor] = useState('');
+  const [plantio, setPlantio] = useState('');
+  const [uid, setUid] = useState('');
   // const [loading, setLoading] = useState(true);
   const {saveFlower} = useContext(FlowerContext);
   const {deleteFlower} = useContext(FlowerContext);
 
   useEffect(() => {
-    setNome(' ');
-    setCor(' ');
-    setPlantio(' ');
-    setUid(' ');
+    // setNome(' ');
+    // setCor(' ');
+    // setPlantio(' ');
+    // setUid(' ');
     if (route.params.flower) {
       setNome(route.params.flower.nome);
       setCor(route.params.flower.cor);
@@ -58,6 +58,7 @@ const Flower = ({route, navigation}) => {
 
   const editarFlor = async () => {
     if (nome && cor && plantio) {
+      console.log(nome, cor, plantio);
       let flower = {};
       flower.uid = uid;
       flower.nome = nome;
@@ -123,9 +124,7 @@ const Flower = ({route, navigation}) => {
       />
       <View style={style.bottom}>
         <EditButton editar={editarFlor} />
-        {route.params.uid !== ' ' ? (
-          <DeleteButton excluir={excluirFlor} />
-        ) : null}
+        {uid ? <DeleteButton excluir={excluirFlor} /> : null}
         {/* {loading && <LoadingIndicator />} */}
       </View>
     </View>
