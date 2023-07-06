@@ -23,6 +23,8 @@ const Item = ({item, onPress}) => {
           <Text style={style.textNome}>Flor: {item.nome}</Text>
           <Text style={style.textEmail}>Cor: {item.cor}</Text>
           <Text style={style.textEmail}>Plantio: {item.inicio_plantio}</Text>
+          <Text style={style.textEmail}>Latitude: {item.latitude}</Text>
+          <Text style={style.textEmail}>Longitude: {item.longitude}</Text>
         </>
       </TouchableHighlight>
     </View>

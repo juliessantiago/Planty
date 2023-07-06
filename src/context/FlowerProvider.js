@@ -36,6 +36,8 @@ export const FlowerProvider = ({children}) => {
               nome: doc.data().nome,
               inicio_plantio: doc.data().inicio_plantio,
               cor: doc.data().cor,
+              latitude: doc.data().latitude,
+              longitude: doc.data().longitude,
             };
             arrayDados.push(flower);
             //console.log(arrayzinho);
@@ -64,6 +66,8 @@ export const FlowerProvider = ({children}) => {
           nome: value.nome,
           cor: value.cor,
           inicio_plantio: value.inicio_plantio,
+          latitude: value.latitude,
+          longitude: value.longitude,
         },
         {merge: true},
       )
@@ -72,7 +76,7 @@ export const FlowerProvider = ({children}) => {
       })
       .catch(error => {
         console.log(
-             //está caindo aqui sempre mesmo excluindo os dados
+          //está caindo aqui sempre mesmo excluindo os dados
           'Não foi possível atualizar dados (FlowerProvider)' + error,
         );
       });

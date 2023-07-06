@@ -9,7 +9,7 @@ const EditButton = ({editar}) => {
         underlayColor={'transparent'}
         style={style.button}
         onPress={editar}>
-        <Text style={{color: 'white', fontSize: 12}}>Editar</Text>
+        <Text style={{color: 'white', fontSize: 12}}>Enviar</Text>
       </TouchableHighlight>
     </View>
   );

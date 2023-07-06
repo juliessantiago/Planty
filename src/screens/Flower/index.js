@@ -11,6 +11,8 @@ const Flower = ({route, navigation}) => {
   const [cor, setCor] = useState('');
   const [plantio, setPlantio] = useState('');
   const [uid, setUid] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
   // const [loading, setLoading] = useState(true);
   const {saveFlower} = useContext(FlowerContext);
   const {deleteFlower} = useContext(FlowerContext);
@@ -25,6 +27,8 @@ const Flower = ({route, navigation}) => {
       setCor(route.params.flower.cor);
       setPlantio(route.params.flower.inicio_plantio);
       setUid(route.params.flower.id);
+      setLatitude(route.params.flower.latitude);
+      setLongitude(route.params.flower.longitude);
     }
   }, []); //dados da flor serão trazidos na montagem do componente
 
@@ -64,6 +68,8 @@ const Flower = ({route, navigation}) => {
       flower.nome = nome;
       flower.cor = cor;
       flower.inicio_plantio = plantio;
+      flower.latitude = latitude;
+      flower.longitude = longitude;
       //setLoading(true);
       await saveFlower(flower);
       navigation.goBack();
@@ -122,6 +128,25 @@ const Flower = ({route, navigation}) => {
         onChangeText={text => setPlantio(text)}
         value={plantio}
       />
+
+      <TextInput
+        style={style.input}
+        placeholder="latitude"
+        keyboardType="default"
+        returnKeyType="go"
+        onChangeText={text => setLatitude(text)}
+        value={plantio}
+      />
+
+    <TextInput
+        style={style.input}
+        placeholder="longitude"
+        keyboardType="default"
+        returnKeyType="go"
+        onChangeText={text => setLongitude(text)}
+        value={plantio}
+      />
+
       <View style={style.bottom}>
         <EditButton editar={editarFlor} />
         {uid ? <DeleteButton excluir={excluirFlor} /> : null}
