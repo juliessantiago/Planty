@@ -26,7 +26,7 @@ export const FlowerProvider = ({children}) => {
       .onSnapshot(
         //listener: dados vão ser retornados toda vez que houver uma alteração
         function (querySnapshot) {
-          console.log('getFlowers');
+          //console.log('getFlowers');
           console.log(querySnapshot);
           let arrayDados = [];
           querySnapshot.forEach(function (doc) {

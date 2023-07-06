@@ -37,6 +37,7 @@ const AppStack = () => (
       component={Home}
       options={{
         tabBarLabel: 'Home',
+        // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: () => (
           <Ionicons name="home-outline" color={colors.primaryDark} size={28} />
         ),
@@ -46,7 +47,8 @@ const AppStack = () => (
       name="Users"
       component={Users}
       options={{
-        tabBarLabel: 'Users',
+        tabBarLabel: 'Usuários',
+        // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: () => (
           <Ionicons
             name="people-outline"
@@ -60,7 +62,8 @@ const AppStack = () => (
       name="Flowers"
       component={Flowers}
       options={{
-        tabBarLabel: 'Flowers',
+        tabBarLabel: 'Flores',
+        // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: () => (
           <Ionicons
             name="flower-outline"
@@ -70,12 +73,17 @@ const AppStack = () => (
         ),
       }}
     />
-    <Tab.Screen name="Seeds" component={Seeds}  options={{
-        tabBarLabel: 'Home',
+    <Tab.Screen
+      name="Seeds"
+      component={Seeds}
+      options={{
+        tabBarLabel: 'Sementes',
+        // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: () => (
           <Ionicons name="leaf-outline" color={colors.primaryDark} size={28} />
         ),
-      }}/>
+      }}
+    />
   </Tab.Navigator>
   // </NavigationContainer>
 );
@@ -113,52 +121,11 @@ const Navigator = () => (
 );
 export default Navigator;
 
-const usersStyle = {
-  title: 'Users',
-  headerStyle: {backgroundColor: colors.primary},
-  headerTitleStyle: {color: 'white'},
-  headerTintColor: 'white',
-};
-
 const preloadStyle = {
   headerShown: false,
   // title: 'Recuperar senha',
   // headerStyle: {backgroundColor: colors.primary},
   // headerTitleStyle: {color: 'white'},
-};
-const userStyle = {
-  title: 'Editar usuário',
-  headerStyle: {backgroundColor: colors.primary},
-  headerTitleStyle: {color: 'white'},
-  headerTintColor: 'white',
-};
-
-const flowersStyle = {
-  title: 'Flores',
-  headerStyle: {backgroundColor: colors.primary},
-  headerTitleStyle: {color: 'white'},
-  headerTintColor: 'white',
-};
-
-const flowerStyle = {
-  title: 'Flor',
-  headerStyle: {backgroundColor: colors.primary},
-  headerTitleStyle: {color: 'white'},
-  headerTintColor: 'white',
-};
-
-const homeStyle = {
-  title: 'Home',
-  headerStyle: {backgroundColor: colors.primary},
-  headerTitleStyle: {color: 'white'},
-  headerTintColor: 'white',
-};
-
-const seedsStyle = {
-  title: 'Sementes',
-  headerStyle: {backgroundColor: colors.primary},
-  headerTitleStyle: {color: 'white'},
-  headerTintColor: 'white',
 };
 
 const signInStyle = {
@@ -168,12 +135,6 @@ const signInStyle = {
 };
 const signUpStyle = {
   title: 'Criar nova conta',
-  headerStyle: {backgroundColor: colors.primary},
-  headerTitleStyle: {color: 'white'},
-  headerTintColor: 'white',
-};
-const forgotStyle = {
-  title: 'Recuperar senha',
   headerStyle: {backgroundColor: colors.primary},
   headerTitleStyle: {color: 'white'},
   headerTintColor: 'white',
