@@ -30,7 +30,8 @@ export const FlowerProvider = ({children}) => {
           console.log(querySnapshot);
           let arrayDados = [];
           querySnapshot.forEach(function (doc) {
-            //console.log(doc.id, ' => ', doc.data());
+            console.log(doc);
+            console.log(doc.id, ' => ', doc.data());
             const flower = {
               id: doc.id,
               nome: doc.data().nome,

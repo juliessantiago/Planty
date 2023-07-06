@@ -27,6 +27,7 @@ const SignIn = ({navigation}) => {
     auth()
       .signInWithEmailAndPassword(email, pass)
       .then(() => {
+        console.log(pass);
         if (!auth().currentUser.emailVerified) {
           console.log('não verificado');
           //Se e-mail não foi verificado, não continua o processo
@@ -39,7 +40,7 @@ const SignIn = ({navigation}) => {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{name: ' AppStack'}],
+            routes: [{name: 'AppStack'}],
           }),
         );
       })

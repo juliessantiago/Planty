@@ -60,13 +60,13 @@ const Preload = ({navigation}) => {
       //     }
       //   });
     } else {
-      //Usuário não foi cacheado, então é preciso fazer login
-      // navigation.dispatch(
-      //   CommonActions.reset({
-      //     index: 0,
-      //     routes: [{name: 'Entrar'}],
-      //   }),
-      // );
+     // Usuário não foi cacheado, então é preciso fazer login
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: 'Entrar'}],
+        }),
+      );
     }
     //tudo relacionado a stacks foi deixado sob responsabilidade de routes
     //se esta logado -> appStack, se não está -> authStack

@@ -135,7 +135,7 @@ const Flower = ({route, navigation}) => {
         keyboardType="default"
         returnKeyType="go"
         onChangeText={text => setLatitude(text)}
-        value={plantio}
+        value={latitude}
       />
 
     <TextInput
@@ -144,7 +144,7 @@ const Flower = ({route, navigation}) => {
         keyboardType="default"
         returnKeyType="go"
         onChangeText={text => setLongitude(text)}
-        value={plantio}
+        value={longitude}
       />
 
       <View style={style.bottom}>

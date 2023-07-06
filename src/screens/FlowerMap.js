@@ -2,6 +2,8 @@ import React, {useState, useContext, useEffect} from 'react';
 import {View, StyleSheet, Alert, Dimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {FlowerContext} from '../context/FlowerProvider';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {colors} from '../assets/colors';
 
 const MapFlowers = () => {
   const [mapType, setMatType] = useState('standard');
@@ -12,9 +14,9 @@ const MapFlowers = () => {
     //console.log(students);
     let m = [];
     flowers.map(s => {
-      //console.log(s);
+      console.log(s);
       m.push({
-        key: s.uid,
+        key: s.id,
         coords: {
           latitude: Number(s.latitude),
           longitude: Number(s.longitude),
@@ -34,7 +36,7 @@ const MapFlowers = () => {
           width: Dimensions.get('window').width,
           height: Dimensions.get('window').height,
         }}
-        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+        provider={PROVIDER_GOOGLE}
         ref={map => (this.map = map)}
         mapType={mapType}
         showsUserLocation={true}
@@ -55,16 +57,25 @@ const MapFlowers = () => {
           latitudeDelta: 0.015, //baseado na documentação
           longitudeDelta: 0.0121, //baseado na documentação
         }}>
-        {markers.map(marker => {
+        {flowers.map(flower => {
           return (
             <Marker
-              key={marker.key}
-              coordinate={marker.coords}
-              title={marker.title}
-              description={marker.description}
-              draggable
-              image={marker.image}
-            />
+              key={flower.id}
+              coordinate={{
+                latitude: Number(flower.latitude),
+                longitude: Number(flower.longitude),
+              }}
+              title={flower.nome}
+              description={flower.cor}
+              draggable>
+              <Icon
+                name="business"
+                color={
+                  mapType === 'standard' ? colors.primary : colors.primaryDark
+                }
+                size={35}
+              />
+            </Marker>
           );
         })}
       </MapView>
