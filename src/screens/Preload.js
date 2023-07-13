@@ -7,10 +7,12 @@ import {CommonActions} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {AuthUserContext} from '../context/AuthUserProvider';
 import {FlowerContext} from '../context/FlowerProvider';
+import {ApiContext} from '../context/ApiProvider';
 
 const Preload = ({navigation}) => {
   const {setUser} = useContext(AuthUserContext);
   const {getFlowers} = useContext(FlowerContext);
+  const {getApi} = useContext(ApiContext);
   const getUserCache = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('user'); //precisa ser a mesma chave definida lá no signIn
@@ -74,6 +76,7 @@ const Preload = ({navigation}) => {
   useEffect(() => {
     loginUser();
     Icon.loadFont();
+    getApi(); //retorna objeto de acesso a API Rest
     const linstenerFlowers = getFlowers();
     return () => {
       linstenerFlowers;

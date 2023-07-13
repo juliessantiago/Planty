@@ -107,7 +107,7 @@ const Navigator = () => (
   <NavigationContainer>
     <StatusBar backgroundColor={colors.primaryDark} />
     <Stack.Navigator
-      initialRouteName="AppStack"
+      initialRouteName="AuthStack"
       screenOptions={{
         headerShown: false,
       }}>
