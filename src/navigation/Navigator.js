@@ -82,7 +82,8 @@ const AppStack = () => (
         tabBarIcon: () => (
           <Ionicons name="leaf-outline" color={colors.primaryDark} size={28} />
         ),
-      }}/>
+      }}
+    />
   </Tab.Navigator>
   // </NavigationContainer>
 );
@@ -113,8 +114,10 @@ const Navigator = () => (
       }}>
       <Stack.Screen name="AuthStack" component={AuthStack} />
       <Stack.Screen name="AppStack" component={AppStack} />
-      <Stack.Screen name="Flower" component={Flower} />
+      {/* <Stack.Screen name="Flower" component={Flower} /> */}
       <Stack.Screen name="User" component={User} />
+      <Stack.Screen name="Entrar" component={SignIn} />
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   </NavigationContainer>
 );

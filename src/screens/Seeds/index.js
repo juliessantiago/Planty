@@ -1,28 +1,43 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState, useContext, useEffect} from 'react';
+import {View, SafeAreaView, StyleSheet, Text} from 'react-native';
 import {colors} from '../../assets/colors';
+// import {ApiContext} from '../../context/ApiProvider';
 
-// import { Container } from './styles';
+const Seeds = ({navigation}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+//   const {getApi} = useContext(ApiContext);
 
-const Seeds = () => {
   return (
-    <View style={style.container}>
-      <Text style={style.text}>Seeds</Text>
-    </View>
+    <SafeAreaView>
+      <View style={style.pageHome}>
+        <Text>Sementes</Text>
+      </View>
+      {/* <View style={style.bottom} /> */}
+    </SafeAreaView>
   );
 };
 
 export default Seeds;
 const style = StyleSheet.create({
-  container: {
-    marginTop: 50,
-    flexDirection: 'row',
-    alignItems: 'center', //alinhamento horizontal
-    justifyContent: 'space-around', //alinhamento vertical
-    flexWrap: 'nowrap',
+  pageHome: {
+    display: 'flex',
+    //height: '100%',
+    //backgroundColor: 'gray',
+    height: '95%',
   },
-  text: {
-    fontSize: 18,
-    color: colors.primary,
+  button: {
+    paddingTop: '10',
+    marginLeft: 40,
+    //width: '50%',
+  },
+  nameApp: {
+    color: colors.primaryDark,
+    fontSize: 40,
+    marginTop: 10,
+  },
+  image: {
+    marginTop: 10,
+    marginLeft: '60%',
   },
 });

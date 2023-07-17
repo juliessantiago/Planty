@@ -9,12 +9,7 @@ import LoadingIndicator from '../components/LoadingIndicator';
 // import Icon from 'react-native-vector-icons/Ionicons';
 
 const Users = ({navigation}) => {
-  const flowers = () => {
-    //console.log('chamou função flowers');
-    navigation.navigate('Florzinhas');
-  };
-
-  const [data, setData] = useState([]);
+  const [data, setData] = useState('');
   const [loading, setLoading] = useState(true);
 
   const getUsers = () => {

@@ -55,7 +55,7 @@ export const FlowerProvider = ({children}) => {
 
   // eslint-disable-next-line prettier/prettier
   const saveFlower = async(value) => {
-    console.log(value);
+    // console.log(value);
     await firestore()
       .collection('flowers')
       .doc(value.uid)

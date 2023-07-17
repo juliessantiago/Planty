@@ -27,12 +27,7 @@ const Preload = ({navigation}) => {
     const user = await getUserCache();
     setUser(user);
     if (user) {
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{name: 'Home'}],
-        }),
-      );
+      navigation.navigate('AppStack', {screen: 'Home'});
       //console.log(user.pass);
       //Usuário está cacheado
       // auth()
@@ -63,12 +58,12 @@ const Preload = ({navigation}) => {
       //   });
     } else {
       //Usuário não foi cacheado, então é preciso fazer login
-      // navigation.dispatch(
-      //   CommonActions.reset({
-      //     index: 0,
-      //     routes: [{name: 'Entrar'}],
-      //   }),
-      // );
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: 'Entrar'}],
+        }),
+      );
     }
     //tudo relacionado a stacks foi deixado sob responsabilidade de routes
     //se esta logado -> appStack, se não está -> authStack
@@ -76,10 +71,11 @@ const Preload = ({navigation}) => {
   useEffect(() => {
     loginUser();
     Icon.loadFont();
-    getApi(); //retorna objeto de acesso a API Rest
+    // getApi(); //retorna objeto de acesso a API Rest
     const linstenerFlowers = getFlowers();
     return () => {
       linstenerFlowers;
+      getApi();
     };
   }),
     [];

@@ -19,11 +19,11 @@ import firestore from '@react-native-firebase/firestore';
 import {CommonActions} from '@react-navigation/native';
 
 const SignIn = ({navigation}) => {
-  const [email, setEmail] = useState(' ');
-  const [pass, setPass] = useState(' ');
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
   const entrar = () => {
-    //console.log(email);
-    //console.log(pass);
+    // console.log(email);
+    // console.log(pass);
     auth()
       .signInWithEmailAndPassword(email, pass)
       .then(() => {
@@ -39,11 +39,12 @@ const SignIn = ({navigation}) => {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{name: ' AppStack'}],
+            routes: [{name: 'AppStack'}],
           }),
         );
       })
       .catch(error => {
+        console.log('Erro no SignWithEmailAndPassword' + error);
         switch (error.code) {
           case 'auth/user-not-found':
             Alert.alert('Opa!', 'Não encontramos seu e-mail');
